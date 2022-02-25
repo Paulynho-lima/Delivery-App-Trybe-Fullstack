@@ -1,0 +1,1 @@
+module.exports.encode = require('./encodePassword');
