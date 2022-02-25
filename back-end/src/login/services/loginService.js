@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const helper = require('../../helpers');
 
-const { user } = require('../../../database/models');
+const { user } = require('../../database/models');
 
 const utils = require('../../utils');
 const auth = require('../../auth/services');
