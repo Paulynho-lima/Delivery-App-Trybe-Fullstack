@@ -8,6 +8,7 @@ import schemaValidate from '../../utils/schemaValidate';
 function Login({ history }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState({});
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -71,6 +72,8 @@ function Login({ history }) {
           value={ false }
         />
       </div>
+      { error
+          && <p data-testid="common_login__element-invalid-email">{error.message}</p> }
     </form>
   );
 }
