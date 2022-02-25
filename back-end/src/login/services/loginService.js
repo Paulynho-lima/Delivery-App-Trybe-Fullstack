@@ -53,7 +53,7 @@ module.exports = async (loginData) => {
   const loggedUser = await user.findOne({ where: { email: loginData.email } });
   
   if (!loggedUser || loggedUser.password !== encodedPassword) {
-    throw utils.error(utils.status.badRequest, 'Invalid fields');
+    throw utils.error(utils.status.notFound, 'Invalid fields');
   }
 
   const { id, name, email, role } = loggedUser;
