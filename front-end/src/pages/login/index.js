@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../components/button';
 import Input from '../../components/input';
+import { loginSchema } from '../../utils/schemas';
+import schemaValidate from '../../utils/schemaValidate';
 
 function Login({ history }) {
   const [email, setEmail] = useState('');
@@ -42,7 +44,7 @@ function Login({ history }) {
           type="email"
           label="Email:"
           value={ email }
-          name="email-input"
+          name="email"
           onChange={ handleChange }
           testid="common_login__input-email"
         />
@@ -50,7 +52,7 @@ function Login({ history }) {
           type="password"
           label="Senha:"
           value={ password }
-          name="password-input"
+          name="password"
           onChange={ handleChange }
           testid="common_login__input-password"
         />
@@ -60,13 +62,13 @@ function Login({ history }) {
           name="Login"
           testid="common_login__button-login"
           onClick={ handleClick }
-          disabled="false"
+          value={ schemaValidate({ email, password }, loginSchema) }
         />
         <Button
           name="Ainda não tenho conta"
           testid="common_login__button-register"
           onClick={ handleRegister }
-          disabled="false"
+          value={ false }
         />
       </div>
     </form>
