@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Button from '../../components/button';
 import Input from '../../components/input';
+import { registerSchema } from '../../utils/schemas';
+import schemaValidate from '../../utils/schemaValidate';
+import api from '../../api';
 
-function Cadastro() {
+function Cadastro({ history }) {
+  const prefix = 'common_register__';
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState({});
 
   const handleChange = ({ target }) => {
     const { name: eName, value } = target;
@@ -13,6 +19,19 @@ function Cadastro() {
     if (eName === 'email') return setEmail(value);
     if (eName === 'password') return setPassword(value);
     setName(value);
+  };
+
+  const handleClick = () => {
+    const data = {
+      name,
+      email,
+      password,
+    };
+
+    api.post('/register', data)
+      .then((responseApi) => {
+        history.push(`/${responseApi.data.role}/products`);
+      }).catch((err) => setError(err.response.data));
   };
 
   return (
@@ -24,7 +43,7 @@ function Cadastro() {
           label="Nome"
           value={ name }
           name="name"
-          testid="common_register__input-name"
+          testid={ `${prefix}input-name` }
           onChange={ handleChange }
         />
         <Input
@@ -33,7 +52,7 @@ function Cadastro() {
           value={ email }
           name="email"
           onChange={ handleChange }
-          testid="common_register__input-email"
+          testid={ `${prefix}input-email` }
         />
         <Input
           type="password"
@@ -41,20 +60,25 @@ function Cadastro() {
           value={ password }
           name="password"
           onChange={ handleChange }
-          testid="common_register__input-password"
+          testid={ `${prefix}input-password` }
         />
       </div>
       <div>
         <Button
           name="Cadastrar"
           testid="common_register__button-register"
-          onClick=""
-          value=""
+          onClick={ handleClick }
+          value={ schemaValidate({ name, email, password }, registerSchema) }
         />
       </div>
-      <p data-testid="common_register__element-invalid_register" />
+      { error
+          && <p data-testid={ `${prefix}element-invalid_register` }>{error.message}</p> }
     </div>
   );
 }
 
 export default Cadastro;
+
+Cadastro.propTypes = {
+  history: PropTypes.func,
+}.isRequired;

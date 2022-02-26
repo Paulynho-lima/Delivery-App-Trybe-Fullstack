@@ -29,10 +29,10 @@ function Login({ history }) {
       .then((responseApi) => {
         helper.setStorage(responseApi.data);
         if (responseApi.data.role === 'customer') {
-          history.push('/produtos');
+          history.push(`/${responseApi.data.role}/products`);
           return;
         }
-        history.push('/pedidos');
+        history.push(`/${responseApi.data.role}/orders`);
       }).catch((err) => setError(err.response.data));
   };
 
