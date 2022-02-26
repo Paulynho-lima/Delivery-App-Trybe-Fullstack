@@ -56,9 +56,9 @@ module.exports = async (loginData) => {
     throw utils.error(utils.status.notFound, 'Invalid fields');
   }
 
-  const { id, name, email, role } = loggedUser;
-  const userData = { id, name, email, role };
+  const { name, email, role } = loggedUser;
+  const userData = { name, email, role };
 
   const token = auth.generate(userData);
-  return { token, id, name, email, role };
+  return { ...userData, token };
 };
