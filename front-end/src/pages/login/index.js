@@ -37,7 +37,7 @@ function Login({ history }) {
   };
 
   const handleRegister = () => {
-    history.push('/cadastro');
+    history.push('/register');
   };
 
   return (

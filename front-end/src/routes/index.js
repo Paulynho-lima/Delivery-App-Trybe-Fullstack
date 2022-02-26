@@ -11,7 +11,7 @@ export default function Routes() {
       <Switch>
         <Route path="/pedidos" component={ Pedidos } />
         <Route path="/produtos" component={ Produtos } />
-        <Route path="/cadastro" component={ Cadastro } />
+        <Route path="/register" component={ Cadastro } />
         <Route path="/login" component={ Login } />
         <Redirect from="/" to="/login" />
       </Switch>
