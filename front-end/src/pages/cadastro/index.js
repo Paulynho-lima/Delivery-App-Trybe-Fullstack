@@ -29,7 +29,7 @@ function Cadastro({ history }) {
       password,
     };
 
-    api.post('/register', data)
+    api.post('/customer/register', data)
       .then((responseApi) => {
         helper.setStorage(responseApi.data);
         history.push(`/${responseApi.data.role}/products`);
