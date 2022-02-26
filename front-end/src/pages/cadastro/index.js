@@ -10,9 +10,8 @@ function Cadastro() {
         label="Nome"
         value=""
         name="name"
-        testid=""
+        testid="common_register__input-name"
         onChange=""
-        id="name"
       />
       <Input
         type="email"
@@ -20,7 +19,7 @@ function Cadastro() {
         value=""
         name="email"
         onChange=""
-        testid=""
+        testid="common_register__input-email"
       />
       <Input
         type="password"
@@ -28,7 +27,7 @@ function Cadastro() {
         value=""
         name="password"
         onChange=""
-        testid=""
+        testid="common_register__input-password"
       />
     </div>
   );
