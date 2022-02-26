@@ -9,7 +9,7 @@ export default function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/orders" component={ Pedidos } />
+        <Route path="/seller/orders" component={ Pedidos } />
         <Route path="/customer/products" component={ Produtos } />
         <Route path="/register" component={ Cadastro } />
         <Route path="/login" component={ Login } />

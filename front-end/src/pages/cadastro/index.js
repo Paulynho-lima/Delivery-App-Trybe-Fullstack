@@ -5,6 +5,7 @@ import Input from '../../components/input';
 import { registerSchema } from '../../utils/schemas';
 import schemaValidate from '../../utils/schemaValidate';
 import api from '../../api';
+import helper from '../../helpers';
 
 function Cadastro({ history }) {
   const prefix = 'common_register__';
@@ -30,6 +31,7 @@ function Cadastro({ history }) {
 
     api.post('/register', data)
       .then((responseApi) => {
+        helper.setStorage(responseApi.data);
         history.push(`/${responseApi.data.role}/products`);
       }).catch((err) => setError(err.response.data));
   };
