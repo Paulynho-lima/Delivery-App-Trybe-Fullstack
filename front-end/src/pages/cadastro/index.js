@@ -14,6 +14,22 @@ function Cadastro() {
         onChange=""
         id="name"
       />
+      <Input
+        type="email"
+        label="Email:"
+        value=""
+        name="email"
+        onChange=""
+        testid=""
+      />
+      <Input
+        type="password"
+        label="Senha:"
+        value=""
+        name="password"
+        onChange=""
+        testid=""
+      />
     </div>
   );
 }
