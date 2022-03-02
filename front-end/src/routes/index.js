@@ -9,9 +9,9 @@ export default function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/pedidos" component={ Pedidos } />
-        <Route path="/produtos" component={ Produtos } />
-        <Route path="/cadastro" component={ Cadastro } />
+        <Route path="/seller/orders" component={ Pedidos } />
+        <Route path="/customer/products" component={ Produtos } />
+        <Route path="/register" component={ Cadastro } />
         <Route path="/login" component={ Login } />
         <Redirect from="/" to="/login" />
       </Switch>
