@@ -25,7 +25,7 @@ function Login({ history }) {
       password,
     };
 
-    api.post('/', data)
+    api.post('/login', data)
       .then((responseApi) => {
         helper.setStorage(responseApi.data);
         if (responseApi.data.role === 'customer') {
