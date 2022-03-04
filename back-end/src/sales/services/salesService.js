@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const {user, sale, salesProduct, product, sequelize } = require('../../database/models');
+const { user, sale, salesProduct, product, sequelize } = require('../../database/models');
 const utils = require('../../utils');
 
 const saleSchema = Joi.object({
@@ -12,9 +12,7 @@ const saleSchema = Joi.object({
     products: Joi.array().empty().required(),
 });
 
-const  Status =  Joi.string().min(8).required();
- 
-
+const Status = Joi.string().min(8).required();
 
 const salesService = async (bodys, userId) => {
   utils.validate(bodys, saleSchema);
@@ -43,7 +41,7 @@ const salesService = async (bodys, userId) => {
 const getSaleService = async () => {
   const sales = await sale.findAll({
     include: [
-      { model: user, as: 'seller_id', attributes:{ exclude: [ 'password' ] } },
+      { model: user, as: 'seller_id', attributes: { exclude: ['password'] } },
       { model: product, as: 'products', though: { attributes: [] } },
     ],
   });
@@ -51,11 +49,10 @@ const getSaleService = async () => {
 };
 
 const getSaleBayIdService = async (id) => {
-
-  const salesId = await sale.findOne( { where: { id },
+  const salesId = await sale.findOne({ where: { id },
      include: [
-      { model: user, as: 'seller_id', attributes:{ exclude: [ 'password' ] } },
-       { model: product, as: 'products', though: { attributes: [] } }
+      { model: user, as: 'seller_id', attributes: { exclude: ['password'] } },
+       { model: product, as: 'products', though: { attributes: [] } },
      ],
   });
       return salesId;
@@ -64,12 +61,11 @@ const getSaleBayIdService = async (id) => {
 const updateSaleService = async (status, id) => {
   utils.validate(status, Status);
 
-  await sale.update({status}, { where: { id }});
+  await sale.update({ status }, { where: { id } });
 
-  const saleUpdate = await getSaleBayIdService(id)
+  const saleUpdate = await getSaleBayIdService(id);
 
   return saleUpdate;
-
 };
 
 module.exports = {
