@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
+const helper = require('../../helpers');
 
-const SECRET = 'ujKIPBDg4';
+const SECRET = helper.getSecret();
 
 const JWT_CONFIG = {
   expiresIn: '20d',

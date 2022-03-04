@@ -15,7 +15,7 @@ function Login({ history }) {
   const handleChange = ({ target }) => {
     const { name, value } = target;
 
-    if (name === 'email') return setEmail(value);
+    if (name === 'common_login__input-email') return setEmail(value);
     setPassword(value);
   };
 
@@ -47,7 +47,7 @@ function Login({ history }) {
           type="email"
           label="Email:"
           value={ email }
-          name="email"
+          name="common_login__input-email"
           onChange={ handleChange }
           testid="common_login__input-email"
         />
@@ -55,7 +55,7 @@ function Login({ history }) {
           type="password"
           label="Senha:"
           value={ password }
-          name="password"
+          name="common_login__input-password"
           onChange={ handleChange }
           testid="common_login__input-password"
         />
