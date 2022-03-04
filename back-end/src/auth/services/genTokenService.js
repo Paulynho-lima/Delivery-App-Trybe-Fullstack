@@ -8,4 +8,4 @@ const JWT_CONFIG = {
   algorithm: 'HS256',
 };
 
-module.exports = ((data) => jwt.sign({ data }, SECRET, JWT_CONFIG));
+module.exports = (async (data) => jwt.sign({ data }, await SECRET, JWT_CONFIG));
