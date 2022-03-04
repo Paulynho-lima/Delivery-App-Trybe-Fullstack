@@ -23,11 +23,9 @@ const salesService = async (bodys, userId) => {
           
             const { products } = bodys;
 
-            console.log(products.map((prot) => prot.productId));
-
-            await Promise.all(products.map(async (product) => salesProduct.create(
+            await Promise.all(products.map(async (produt) => salesProduct.create(
         
-              { saleId: sales.id, ...product },
+              { saleId: sales.id, ...produt },
               { transaction: insertSales },
 
             )));

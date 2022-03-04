@@ -1,7 +1,7 @@
 const express = require('express');
 
 const login = require('./loginRoute');
-const sales = require('./salesRouter')
+const sales = require('./salesRouter');
 
 const route = express.Router();
 
