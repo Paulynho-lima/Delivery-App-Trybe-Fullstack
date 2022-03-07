@@ -13,9 +13,7 @@ export default function Routes() {
         <Route path="/customer/checkout" component={ Checkout } />
         <Route path="/pedidos" component={ Pedidos } />
         <Route path="/produtos" component={ Produtos } />
-        <Route path="/seller/orders" component={ Pedidos } />
-        <Route path="/customer/products" component={ Produtos } />
-        <Route path="/register" component={ Cadastro } />
+        <Route path="/cadastro" component={ Cadastro } />
         <Route path="/login" component={ Login } />
         <Redirect from="/" to="/login" />
       </Switch>

@@ -6,7 +6,8 @@ const { user } = require('../../database/models');
 const utils = require('../../utils');
 const auth = require('../../auth/services');
 
-const loginSchema = Joi.object({
+const registerSchema = Joi.object({
+  name: Joi.string().min(12).required().error(new Error('Invalid name entrie. Try again.')),
   email: Joi.string().email().required().error(
     (errors) => {
       let errMsg = '';
@@ -45,20 +46,29 @@ const loginSchema = Joi.object({
   ),
 });
 
-module.exports = async (loginData) => {
-  utils.validate(loginData, loginSchema);
+module.exports = async (customer) => {
+  utils.validate(customer, registerSchema);
 
-  const encodedPassword = helper.encode(loginData.password);
+  const emailExists = await user.findOne({ where: { email: customer.email } });
 
-  const loggedUser = await user.findOne({ where: { email: loginData.email } });
-  
-  if (!loggedUser || loggedUser.password !== encodedPassword) {
-    throw utils.error(utils.status.notFound, 'Invalid fields');
+  if (emailExists) {
+    throw utils.error(utils.status.conflict, 'User already registered');
   }
+  
+  const encodedPassword = helper.encode(customer.password);
+  
+  const data = {
+    name: customer.name,
+    email: customer.email,
+    password: encodedPassword,
+    role: 'customer',
+  };
 
-  const { id, password, ...dataWithoutPassword } = loggedUser.dataValues;
-  const userData = dataWithoutPassword;
+  const newCostumer = await user.create(data);
 
-  const token = auth.generate(userData);
-  return { ...userData, token };
+  const { id, password, ...dataWithoutPassword } = newCostumer.dataValues;
+  const customerData = dataWithoutPassword;
+
+  const token = auth.generate(customerData);
+  return { ...customerData, token };
 };
