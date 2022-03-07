@@ -1,4 +1,3 @@
-require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const utils = require('../../utils');
 const helper = require('../../helpers');
