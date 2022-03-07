@@ -5,28 +5,28 @@ import PropTypes from 'prop-types';
 function Card({ id, status, data, value, address }) {
   return (
     <Link key={ id } to={ `seller/orders/${id}` }>
-      <div
-        data-testid={ `seller_orders__element-order-date-${id}` }
-      >
-        <div>
+      <section>
+        <div data-testid={ `seller_orders__element-order-id-${id}` }>
           <p>Pedido</p>
           <p>{ id }</p>
         </div>
         <div>
           <div>
-            <div>
+            <div data-testid={ `seller_orders__element-delivery-status-${id}` }>
               { status }
             </div>
-            <div>
+            <div data-testid={ `seller_orders__element-order-date-${id}` }>
               { data }
-              { value }
+            </div>
+            <div data-testid={ `seller_orders__element-card-price-${id}` }>
+              { `R$ ${value.replace('.', ',')}` }
             </div>
           </div>
-          <div>
+          <div data-testid={ `seller_orders__element-card-address-${id}` }>
             { address }
           </div>
         </div>
-      </div>
+      </section>
     </Link>
   );
 }
