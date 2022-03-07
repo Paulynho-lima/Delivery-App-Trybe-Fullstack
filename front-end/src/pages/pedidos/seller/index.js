@@ -6,6 +6,7 @@ import Header from '../../../components/header';
 
 function Pedidos() {
   const [loggedUser, setLoggedUser] = useState({});
+  const [orders, setOrders] = useState({});
 
   useEffect(() => {
     helper.getStorage()
@@ -13,7 +14,8 @@ function Pedidos() {
   }, []);
 
   useEffect(() => {
-    api.get('/sales', { headers: { Authorization: `Bearer ${loggedUser.token}` } });
+    api.get('/order', { headers: { Authorization: loggedUser.token } })
+      .then((apiResponse) => setOrders(apiResponse.data));
   }, [loggedUser]);
 
   return (
@@ -21,13 +23,18 @@ function Pedidos() {
       <>
         <Header name={ loggedUser.name } />
         <main>
-          <Card
-            id="0001"
-            status="PENDENTE"
-            data="00/00/0000"
-            value="R$ 00,00"
-            address="Rua X, Bairo Y, 000"
-          />
+          { orders && (
+            orders.map((order) => (
+              <Card
+                key={ order.id }
+                id={ order.id }
+                status={ order.status }
+                data={ order.sale_date }
+                value={ order.total_price }
+                address={ order.delivery_address }
+              />
+            ))
+          )}
         </main>
       </>
     )

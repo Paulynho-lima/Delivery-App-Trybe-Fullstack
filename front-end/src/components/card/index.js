@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 function Card({ id, status, data, value, address }) {
   return (
-    <div>
+    <div
+      data-testid={ `seller_orders__element-order-date-${id}` }
+    >
       <div>
         <p>Pedido</p>
         <p>{ id }</p>
