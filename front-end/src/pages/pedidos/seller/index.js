@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api';
 import helper from '../../../helpers';
-import Card from '../../../components/card';
+import Card from '../../../components/OrderCard';
 import Header from '../../../components/header';
 
 function Pedidos() {
