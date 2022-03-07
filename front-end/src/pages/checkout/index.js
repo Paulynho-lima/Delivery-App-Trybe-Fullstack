@@ -72,6 +72,8 @@ function Checkout() {
     history.push(`/customer/orders/${saleId.id}`);
   };
 
+  console.log(vendedores);
+
   return (
     <div>
       <table className="table">
