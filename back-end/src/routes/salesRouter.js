@@ -2,7 +2,7 @@ const express = require('express');
 const { salesController, getSaleController, 
   getSaleByIdController, updateSaleController } = require('../sales/controllers/salesController');
 
-const middleware = require('../middlewares');
+ const middleware = require('../middlewares');
 
 const salesRouter = express.Router();
 

@@ -6,8 +6,8 @@ const { salesService, getSaleService, getSaleBayIdService,
 const salesController = async (req, res, next) => {
     try {
       const bodySales = req.body;
-      const { id } = req.user;
-
+       const { id } = req.user;
+      
       const newSales = await salesService(bodySales, id);
     
       return res.status(utils.status.created).json(newSales);
