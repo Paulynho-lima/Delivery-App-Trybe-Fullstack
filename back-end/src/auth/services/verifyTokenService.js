@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const utils = require('../../utils');
+const helper = require('../../helpers');
 
 module.exports = async (token) => {
   const SECRET = helper.getSecret().then((data) => data);
