@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Login from '../pages/login';
 import Cadastro from '../pages/cadastro';
-import Pedidos from '../pages/pedidos';
+import Pedidos from '../pages/pedidos/seller';
 import Produtos from '../pages/produtos';
 
 export default function Routes() {
