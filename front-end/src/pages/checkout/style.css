@@ -1,0 +1,16 @@
+
+.forms {
+    display: grid;
+    border: 1px solid black;
+    margin-top: 50px;
+}
+
+.table  { 
+    border: 2px solid black;
+    empty-cells: 20;
+    width: 260;
+}
+
+.table td {
+    border: 1px solid black;
+}
