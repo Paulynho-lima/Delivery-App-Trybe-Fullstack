@@ -1,10 +1,26 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setUser } from '../../app/slices/user';
+import helpers from '../../helpers';
+import Button from '../button';
+
+const DEFAULT_USER = {
+  name: null,
+  email: null,
+  role: null,
+  token: null,
+};
 
 function Header() {
   const loggedUser = useSelector((state) => state.user);
   const { userName, role } = loggedUser;
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    helpers.removeStorage();
+    dispatch(setUser(DEFAULT_USER));
+  };
 
   return (
     <header>
@@ -27,9 +43,14 @@ function Header() {
           <div data-testid="customer_products__element-navbar-user-full-name">
             { userName }
           </div>
-          <div data-testid="customer_products__element-navbar-link-logout">
-            Sair
-          </div>
+          <Link to="/login">
+            <Button
+              name="Sair"
+              testid="customer_products__element-navbar-link-logout"
+              onClick={ handleLogout }
+              value={ false }
+            />
+          </Link>
         </div>
       </nav>
     </header>

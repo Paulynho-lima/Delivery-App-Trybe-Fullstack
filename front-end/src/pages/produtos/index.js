@@ -12,7 +12,7 @@ function Produtos() {
     api.get('/products', { headers: { Authorization: loggedUser } })
       .then((apiResponse) => {
         setProducts(apiResponse.data);
-      });
+      }).catch((err) => console.log(err.data));
   }, [loggedUser]);
 
   return (
