@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../button';
 
 function CardProduto({ id, price, imageUrl, name }) {
-  const [quantity, setQuantity] = userState(0);
+  const [quantity, setQuantity] = useState(0);
 
   const sumQuantity = async () => {
     const newQuantity = quantity + 1;
@@ -25,7 +25,7 @@ function CardProduto({ id, price, imageUrl, name }) {
 
     if (value < 0) return;
 
-    setQuantity(value);
+    setQuantity(Number(value));
   };
 
   return (

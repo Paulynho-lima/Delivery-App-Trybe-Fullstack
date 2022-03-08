@@ -1,3 +1,3 @@
 module.exports = {
-  LOCALSTORAGEKEY: 'deliveryApp@USERDATA',
+  LOCALSTORAGEKEY: 'user',
 };
