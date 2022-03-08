@@ -59,6 +59,6 @@ module.exports = async (loginData) => {
   const { id, password, ...dataWithoutPassword } = loggedUser.dataValues;
   const userData = dataWithoutPassword;
 
-  const token = auth.generate(userData);
+  const token = await auth.generate(userData);
   return { ...userData, token };
 };
