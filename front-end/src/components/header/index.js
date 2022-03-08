@@ -1,16 +1,31 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-function Header({ name }) {
+function Header() {
+  const loggedUser = useSelector((state) => state.user);
+  const { userName, role } = loggedUser;
+
   return (
     <header>
       <nav>
-        <div>
-          PEDIDOS
-        </div>
+        { role === 'customer' && (
+          <div>
+            <div>
+              <Link to="/customer/products">
+                PRODUTOS
+              </Link>
+            </div>
+            <div>
+              <Link to="/customer/orders">
+                MEUS PEDIDOS
+              </Link>
+            </div>
+          </div>
+        )}
         <div>
           <div>
-            { name }
+            { userName }
           </div>
           <div>
             Sair
@@ -22,7 +37,3 @@ function Header({ name }) {
 }
 
 export default Header;
-
-Header.propTypes = {
-  name: PropTypes.string,
-}.isRequired;
