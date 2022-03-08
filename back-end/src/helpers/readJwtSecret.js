@@ -1,8 +1,7 @@
-const fs = require('fs').promises;
+const fs = require('fs');
 
-module.exports = async () => {
-  const secret = await fs.readFile('./jwt.evaluation.key', 'utf-8')
-    .then((content) => (content));
-
+module.exports = () => {
+  const secret = fs.readFileSync('jwt.evaluation.key', { encoding: "utf-8" })
+    .trim();
   return secret;
 };
