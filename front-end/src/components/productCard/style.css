@@ -1,1 +1,7 @@
-/* CSS da página de Login */
+.container {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

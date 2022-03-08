@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setUser } from '../../app/slices/user';

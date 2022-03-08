@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './style.css';
 import PropTypes from 'prop-types';
 import Button from '../button';
 
@@ -29,7 +30,7 @@ function CardProduto({ id, price, imageUrl, name }) {
   };
 
   return (
-    <div>
+    <div className="container">
       <div data-testid={ `customer_products__element-card-price-${id}` }>
         { `R$ ${price.replace('.', ',')}` }
       </div>
