@@ -28,6 +28,9 @@ function Produtos() {
           ))
         )}
       </main>
+      <div>
+        Botão do Carrinho
+      </div>
     </>
   );
 }

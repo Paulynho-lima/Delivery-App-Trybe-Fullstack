@@ -11,12 +11,12 @@ function Header() {
       <nav>
         { role === 'customer' && (
           <div>
-            <div>
+            <div data-testid="customer_products__element-navbar-link-products">
               <Link to="/customer/products">
                 PRODUTOS
               </Link>
             </div>
-            <div>
+            <div data-testid="customer_products__element-navbar-link-orders">
               <Link to="/customer/orders">
                 MEUS PEDIDOS
               </Link>
@@ -24,10 +24,10 @@ function Header() {
           </div>
         )}
         <div>
-          <div>
+          <div data-testid="customer_products__element-navbar-user-full-name">
             { userName }
           </div>
-          <div>
+          <div data-testid="customer_products__element-navbar-link-logout">
             Sair
           </div>
         </div>
