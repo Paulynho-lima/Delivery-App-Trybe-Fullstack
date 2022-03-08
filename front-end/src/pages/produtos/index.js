@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Header from '../../components/header';
 import api from '../../api';
+import CardProduto from '../../components/productCard';
 
 function Produtos() {
   const loggedUser = useSelector((state) => state.user.token);
@@ -16,7 +17,16 @@ function Produtos() {
     <>
       <Header />
       <main>
-        PRODUTOS
+        { products && (
+          products.map((product) => (
+            <CardProduto
+              key={ product.id }
+              price={ product.price }
+              imageUrl={ product.url_image }
+              name={ product.name }
+            />
+          ))
+        )}
       </main>
     </>
   );
