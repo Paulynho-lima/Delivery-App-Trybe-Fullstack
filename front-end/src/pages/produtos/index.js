@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import './style.css';
 import Header from '../../components/header';
 import api from '../../api';
 import CardProduto from '../../components/productCard';
@@ -18,7 +19,7 @@ function Produtos() {
   return (
     <>
       <Header />
-      <main>
+      <main className="container">
         { products && (
           products.map((product) => (
             <CardProduto

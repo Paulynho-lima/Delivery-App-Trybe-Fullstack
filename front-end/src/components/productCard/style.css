@@ -2,6 +2,12 @@
   align-items: center;
   color: white;
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   justify-content: center;
+  max-height: 500px;
+  max-width: 500px;
+}
+
+img {
+  width: 150px;
 }
