@@ -4,17 +4,19 @@ import PropTypes from 'prop-types';
 function Header({ name }) {
   return (
     <header>
-      <div>
-        PEDIDOS
-      </div>
-      <div>
+      <nav>
         <div>
-          { name }
+          PEDIDOS
         </div>
         <div>
-          Sair
+          <div>
+            { name }
+          </div>
+          <div>
+            Sair
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
   );
 }
