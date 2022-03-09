@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Button({ name, testid, onClick, value }) {
+function Button({ label, name, id, testid, onClick, value }) {
   return (
     <button
       type="button"
+      name={ name }
+      id={ id }
       data-testid={ testid }
       onClick={ onClick }
       disabled={ value }
     >
-      { name }
+      { label }
     </button>
   );
 }
@@ -21,7 +23,15 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]).isRequired,
   name: PropTypes.string.isRequired,
+  id: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
   testid: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   value: PropTypes.bool,

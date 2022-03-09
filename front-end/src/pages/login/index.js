@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '../../components/button';
 import Input from '../../components/input';
@@ -6,11 +8,14 @@ import api from '../../api';
 import helper from '../../helpers';
 import { loginSchema } from '../../utils/schemas';
 import schemaValidate from '../../utils/schemaValidate';
+import { setUser } from '../../app/slices/user';
 
-function Login({ history }) {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState({});
+  const [redirectTo, setRedirectTo] = useState(null);
+  const dispatch = useDispatch();
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -28,16 +33,19 @@ function Login({ history }) {
     api.post('/login', data)
       .then((responseApi) => {
         helper.setStorage(responseApi.data);
+        dispatch(setUser(responseApi.data));
         if (responseApi.data.role === 'customer') {
-          history.push(`/${responseApi.data.role}/products`);
+          setRedirectTo(`/${responseApi.data.role}/products`);
           return;
         }
-        history.push(`/${responseApi.data.role}/orders`);
+        setRedirectTo(`/${responseApi.data.role}/orders`);
       }).catch((err) => setError(err.response.data));
   };
 
+  if (redirectTo) return <Redirect to={ redirectTo } />;
+
   const handleRegister = () => {
-    history.push('/register');
+    setRedirectTo('/register');
   };
 
   return (
@@ -62,13 +70,17 @@ function Login({ history }) {
       </div>
       <div>
         <Button
-          name="Login"
+          label="Login"
+          name="login-btn"
+          id="login-btn"
           testid="common_login__button-login"
           onClick={ handleClick }
           value={ schemaValidate({ email, password }, loginSchema) }
         />
         <Button
-          name="Ainda não tenho conta"
+          label="Ainda não tenho conta"
+          name="register-btn"
+          id="register-btn"
           testid="common_login__button-register"
           onClick={ handleRegister }
           value={ false }
