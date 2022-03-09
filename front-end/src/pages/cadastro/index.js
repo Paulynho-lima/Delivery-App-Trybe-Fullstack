@@ -67,7 +67,9 @@ function Cadastro({ history }) {
       </div>
       <div>
         <Button
-          name="Cadastrar"
+          label="Cadastrar"
+          name="register-submit-btn"
+          id="register-submit-btn"
           testid="common_register__button-register"
           onClick={ handleClick }
           value={ schemaValidate({ name, email, password }, registerSchema) }
