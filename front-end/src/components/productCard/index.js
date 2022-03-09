@@ -1,68 +1,76 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCart, updateCart } from '../../app/slices/cart';
 import Button from '../button';
 
 function CardProduto({ id, price, imageUrl, name }) {
   const [quantity, setQuantity] = useState(0);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
 
-  const sumQuantity = async () => {
-    const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
-  };
+  useEffect(() => {
+    const product = cart.find((element) => element.id === id);
 
-  const subQuantity = async () => {
-    if (quantity === 0) return;
-    if (quantity === 1) {
-      setQuantity(0);
+    if (!product) {
+      if (quantity === 0) return;
+      const subTotal = (parseFloat(price) * quantity).toFixed(2);
+      return dispatch(setCart({ id, name, price, quantity, subTotal }));
     }
 
-    const newQuantity = quantity - 1;
-    setQuantity(newQuantity);
-  };
+    if (product) {
+      if (quantity === 0) return;
+      const newSubTotal = (parseFloat(price) * quantity).toFixed(2);
+      const newQuantity = quantity;
+      dispatch(updateCart({ id, newQuantity, newSubTotal }));
+    }
 
-  const handleChange = async ({ target }) => {
-    const { value } = target;
-
-    if (value < 0) return;
-
-    setQuantity(Number(value));
-  };
+    if (product.quantity <= 0) {
+      const newCart = cart.filter((productCart) => productCart.id !== id);
+      dispatch(setCart(newCart));
+    }
+  }, [quantity]);
 
   return (
     <div className="container">
-      <div data-testid={ `customer_products__element-card-price-${id}` }>
+      <p data-testid={ `customer_products__element-card-price-${id}` }>
         { `R$ ${price.replace('.', ',')}` }
-      </div>
+      </p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ imageUrl }
         alt="imagem do produto"
       />
       <div>
-        <div data-testid={ `customer_products__element-card-title-${id}` }>
+        <p data-testid={ `customer_products__element-card-title-${id}` }>
           { name }
-        </div>
+        </p>
+        <p>{ quantity }</p>
         <div>
           <Button
-            name="-"
+            label="-"
+            name="btn-sub"
+            id={ id }
             testid={ `customer_products__button-card-rm-item-${id}` }
-            onClick={ subQuantity }
+            onClick={ () => { if (quantity >= 1) setQuantity(quantity - 1); } }
             value={ false }
           />
           <input
             type="text"
             name="quantity"
-            id="quantity-input"
+            id={ id }
             placeholder="0"
-            onChange={ handleChange }
+            onChange={ ({ target }) => setQuantity(target.value) }
             value={ quantity }
             data-testid={ `customer_products__input-card-quantity-${id}` }
           />
           <Button
-            name="+"
+            label="+"
+            name="btn-add"
+            id={ id }
             testid={ `customer_products__button-card-add-item-${id}` }
-            onClick={ sumQuantity }
+            onClick={ () => { setQuantity(quantity + 1); } }
             value={ false }
           />
         </div>

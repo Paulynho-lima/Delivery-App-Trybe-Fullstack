@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '../../components/button';
@@ -9,11 +10,12 @@ import { loginSchema } from '../../utils/schemas';
 import schemaValidate from '../../utils/schemaValidate';
 import { setUser } from '../../app/slices/user';
 
-function Login({ history }) {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState({});
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -66,13 +68,17 @@ function Login({ history }) {
       </div>
       <div>
         <Button
-          name="Login"
+          label="Login"
+          name="login-btn"
+          id="login-btn"
           testid="common_login__button-login"
           onClick={ handleClick }
           value={ schemaValidate({ email, password }, loginSchema) }
         />
         <Button
-          name="Ainda não tenho conta"
+          label="Ainda não tenho conta"
+          name="register-btn"
+          id="register-btn"
           testid="common_login__button-register"
           onClick={ handleRegister }
           value={ false }

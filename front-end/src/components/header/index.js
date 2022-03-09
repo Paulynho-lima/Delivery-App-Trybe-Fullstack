@@ -3,6 +3,7 @@ import './style.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setUser } from '../../app/slices/user';
+import { deleteCart } from '../../app/slices/cart';
 import helpers from '../../helpers';
 import Button from '../button';
 
@@ -21,6 +22,7 @@ function Header() {
   const handleLogout = () => {
     helpers.removeStorage();
     dispatch(setUser(DEFAULT_USER));
+    dispatch(deleteCart());
   };
 
   return (
@@ -46,7 +48,9 @@ function Header() {
           </div>
           <Link to="/login">
             <Button
-              name="Sair"
+              label="Sair"
+              name="logout-btn"
+              id="logout-btn"
               testid="customer_products__element-navbar-link-logout"
               onClick={ handleLogout }
               value={ false }

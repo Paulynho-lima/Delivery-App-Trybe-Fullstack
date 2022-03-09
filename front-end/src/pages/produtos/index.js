@@ -7,15 +7,21 @@ import CardProduto from '../../components/productCard';
 
 function Produtos() {
   const loggedUser = useSelector((state) => state.user.token);
+  // const cart = useSelector((state) => state.cart);
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
     api.get('/products', { headers: { Authorization: loggedUser } })
       .then((apiResponse) => {
-        setProducts(apiResponse.data);
-      }).catch((err) => console.log(err.data));
+        setProducts((apiResponse.data));
+      }).catch((err) => console.log(err));
   }, [loggedUser]);
 
+  // useEffect(() => {
+  //   let totalPrice = 0.00;
+
+  //   cart.map
+  // }, [cart]);
   return (
     <>
       <Header />

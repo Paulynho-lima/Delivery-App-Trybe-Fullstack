@@ -1,6 +1,5 @@
 .container {
   align-items: center;
-  color: white;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
