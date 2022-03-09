@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../../api';
-import helper from '../../../helpers';
 import Card from '../../../components/OrderCard';
 import Header from '../../../components/header';
 
 function Pedidos() {
-  const [loggedUser, setLoggedUser] = useState({});
-  const [orders, setOrders] = useState({});
+  const loggedUser = useSelector((state) => state.user.token);
+  const [orders, setOrders] = useState(null);
 
   useEffect(() => {
-    helper.getStorage()
-      .then((data) => setLoggedUser(data));
-  }, []);
-
-  useEffect(() => {
-    api.get('/order', { headers: { Authorization: loggedUser.token } })
+    api.get('/order', { headers: { Authorization: loggedUser } })
       .then((apiResponse) => setOrders(apiResponse.data));
   }, [loggedUser]);
 
