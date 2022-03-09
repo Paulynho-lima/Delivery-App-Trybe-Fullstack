@@ -57,7 +57,7 @@ global.beforeEach(async () => {
     .trim()
     .replace(descriptionRegex, " > ");
 
-  // console.log(`Testando o requisito:\n\`${global.__TESTDESC__}\``);
+  console.log(`Testando o requisito:\n\`${global.__TESTDESC__}\``);
 
   if (!excludeList.includes(global.__TESTFILE__)) {
     page && (await jestPuppeteer.resetBrowser());
