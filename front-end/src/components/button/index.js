@@ -23,7 +23,10 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]).isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.oneOfType([
     PropTypes.string,
