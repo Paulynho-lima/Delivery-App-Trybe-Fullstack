@@ -9,7 +9,7 @@ function Produtos() {
   const loggedUser = useSelector((state) => state.user.token);
   const cart = useSelector((state) => state.cart);
   const [products, setProducts] = useState(null);
-  const [totalCart, setTotalCart] = useState(0);
+  // const [totalCart, setTotalCart] = useState(0);
 
   useEffect(() => {
     api.get('/products', { headers: { Authorization: loggedUser } })
