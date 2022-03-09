@@ -7,7 +7,7 @@ import CardProduto from '../../components/productCard';
 
 function Produtos() {
   const loggedUser = useSelector((state) => state.user.token);
-  const cart = useSelector((state) => state.cart);
+  // const cart = useSelector((state) => state.cart);
   const [products, setProducts] = useState(null);
   // const [totalCart, setTotalCart] = useState(0);
 
@@ -18,19 +18,19 @@ function Produtos() {
       }).catch((err) => console.log(err));
   }, [loggedUser]);
 
-  useEffect(() => {
-    let totalPrice = 0.00;
+  // useEffect(() => {
+  //   let totalPrice = 0.00;
 
-    const totalValue = cart.map(({ subTotal }) => {
-      const sumTotal = totalPrice + parseFloat(subTotal);
-      totalPrice = sumTotal;
-      // console.log(sumTotal);
-      return sumTotal;
-    });
-    totalPrice = totalValue;
-    console.log(totalPrice);
-    setTotalCart(totalPrice);
-  }, [cart]);
+  //   const totalValue = cart.map(({ subTotal }) => {
+  //     const sumTotal = totalPrice + parseFloat(subTotal);
+  //     totalPrice = sumTotal;
+  //     // console.log(sumTotal);
+  //     return sumTotal;
+  //   });
+  //   totalPrice = totalValue;
+  //   console.log(totalPrice);
+  //   setTotalCart(totalPrice);
+  // }, [cart]);
 
   return (
     <>
