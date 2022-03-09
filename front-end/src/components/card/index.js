@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Card({ id, status, data, value, address }) {
+function Card({ id, status, date, value, address, testId, testIdStatus, testIdDate }) {
   return (
     <div>
       <div>
         <p>Pedido</p>
-        <p>{ id }</p>
+        <p data-testid={ `${testId}${id}` }>{ id }</p>
       </div>
       <div>
         <div>
-          <div>
+          <div data-testid={ `${testIdStatus}${id}` }>
             { status }
           </div>
-          <div>
-            { data }
+          <div data-testid={ `${testIdDate}${id}` }>
+            { date }
             { value }
           </div>
         </div>
