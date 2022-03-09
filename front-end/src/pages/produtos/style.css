@@ -1,1 +1,10 @@
-/* CSS da página de Login */
+.container {
+  align-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 300px;
+}
