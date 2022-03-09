@@ -11,14 +11,14 @@ const Arrays = [
     id: 1,
     name: 'coca cola',
     quantity: 5,
-    valor: 10,
+    price: 10,
 
   },
   {
     id: 2,
     name: 'cerveja',
     quantity: 10,
-    valor: 50,
+    price: 50,
 
   },
 ];
@@ -30,6 +30,8 @@ function Checkout() {
   const [numero, setNumero] = useState('');
   const [token, setToken] = useState(null);
   const [saleId, setSaleId] = useState('');
+  const [array, setArray] = useState(Arrays);
+  const [totalPrice, setTotalPrice] = useState(1000);
   const history = useHistory();
 
   useEffect(() => {
@@ -60,19 +62,33 @@ function Checkout() {
 
   const onSubmitOrder = async (envet) => {
     envet.preventDefault();
+    const products = array.map(({ id, quantity }) => {
+      const productId = id;
+      return { productId, quantity };
+    });
     await createSale({
       totalPrice: 10.50,
       deliveryAddress: endereço,
       deliveryNumber: numero,
       status: 'Pendente',
       sellerId: IdSeller,
-      products: [{ productId: 2, quantity: 10 }],
+      products,
     });
 
     history.push(`/customer/orders/${saleId.id}`);
+    console.log(products);
   };
 
-  console.log(vendedores);
+  const removeItem = (index) => {
+    // setArray(array.filter((item) => item.name !== name));
+    const itens = [...array];
+    setTotalPrice((totalPrice - (itens[index].price * itens[index].quantity).toFixed(2)));
+    itens.splice(index, 1);
+    setArray(itens);
+    console.log(index);
+  };
+
+  console.log('errreer', array);
 
   return (
     <div>
@@ -89,9 +105,12 @@ function Checkout() {
           </tr>
         </thead>
         <tbody>
-          {Arrays.map((arr, index) => (
+          {array.map((arr, index) => (
             <tr key={ index }>
-              <td>
+              <td
+                data-testid={ `customer_checkout__element-order-table-item-number-
+              ${index}` }
+              >
                 { index + 1 }
               </td>
 
@@ -109,21 +128,21 @@ function Checkout() {
                 data-testid={ `customer_checkout__element-order-table-unit-price-
                 ${index}` }
               >
-                { arr.valor }
+                { arr.price }
               </td>
 
               <td
                 data-testid={ `customer_checkout__element-order-table-sub-total-
                 ${index}` }
               >
-                { Number(arr.valor) * Number(arr.quantity) }
+                { Number(arr.price) * Number(arr.quantity) }
               </td>
 
               <div>
                 <Button
                   name="Remover"
                   testid={ `customer_checkout__element-order-table-remove-${index}` }
-                  onClick=""
+                  onClick={ () => removeItem(index) }
                   value={ false }
                 />
               </div>
@@ -135,7 +154,7 @@ function Checkout() {
           <tr>
 
             <td data-testid="customer_checkout__element-order-total-price">
-              {` Total: R$ ${Number(1000)}`}
+              {` Total: R$ ${Number(totalPrice)}`}
 
             </td>
           </tr>
