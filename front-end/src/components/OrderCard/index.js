@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 
 function Card({ id, status, data, value, address, prefix, route }) {
@@ -16,7 +17,7 @@ function Card({ id, status, data, value, address, prefix, route }) {
               { status }
             </div>
             <div data-testid={ `${prefix}__element-order-date-${id}` }>
-              { data }
+              { moment(data).format('L') }
             </div>
             <div data-testid={ `${prefix}__element-card-price-${id}` }>
               { `R$ ${value.replace('.', ',')}` }

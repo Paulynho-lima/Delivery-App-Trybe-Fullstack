@@ -6,6 +6,7 @@ import Pedidos from '../pages/pedidos/seller';
 import Produtos from '../pages/produtos';
 import PedidosCliente from '../pages/pedidos/customer';
 import Checkout from '../pages/checkout';
+import DetalhesPedidoVendedor from '../pages/detalhesPedidos/seller';
 
 export default function Routes() {
   return (
@@ -13,6 +14,7 @@ export default function Routes() {
       <Switch>
         <Route path="/customer/checkout" component={ Checkout } />
         <Route path="/customer/orders/:id" component={ PedidosCliente } />
+        <Route path="/seller/orders/:id" component={ DetalhesPedidoVendedor } />
         <Route path="/seller/orders" component={ Pedidos } />
         <Route path="/customer/products" component={ Produtos } />
         <Route path="/register" component={ Cadastro } />
