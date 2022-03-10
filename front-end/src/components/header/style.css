@@ -2,6 +2,7 @@ nav {
   align-items: center;
   background-color: aquamarine;
   display: flex;
-  justify-content: space-around;
   height: 70px;
+  justify-content: space-around;
+ 
 }
