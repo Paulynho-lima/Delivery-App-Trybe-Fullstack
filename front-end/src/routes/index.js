@@ -2,8 +2,9 @@ import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Login from '../pages/login';
 import Cadastro from '../pages/cadastro';
-import Pedidos from '../pages/pedidos';
+import Pedidos from '../pages/pedidos/seller';
 import Produtos from '../pages/produtos';
+import PedidosCliente from '../pages/pedidos/customer';
 import Checkout from '../pages/checkout';
 
 export default function Routes() {
@@ -11,8 +12,7 @@ export default function Routes() {
     <BrowserRouter>
       <Switch>
         <Route path="/customer/checkout" component={ Checkout } />
-        <Route path="/pedidos" component={ Pedidos } />
-        <Route path="/produtos" component={ Produtos } />
+        <Route path="/customer/orders" component={ PedidosCliente } />
         <Route path="/seller/orders" component={ Pedidos } />
         <Route path="/customer/products" component={ Produtos } />
         <Route path="/register" component={ Cadastro } />

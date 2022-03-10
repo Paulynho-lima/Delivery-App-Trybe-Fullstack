@@ -1,9 +1,9 @@
-require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const utils = require('../../utils');
+const helper = require('../../helpers');
 
 module.exports = (token) => {
-  const SECRET = process.env.JWT_SECRET;
+  const SECRET = helper.getSecret();
 
   try {
     const decoded = jwt.verify(token, SECRET);
