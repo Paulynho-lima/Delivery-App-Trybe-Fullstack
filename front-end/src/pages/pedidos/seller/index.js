@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import moment from 'moment';
 import api from '../../../api';
 import Card from '../../../components/OrderCard';
 import Header from '../../../components/header';
@@ -20,7 +21,7 @@ function Pedidos() {
         id={ order.id }
         status={ order.status }
         data={ order.sale_date }
-        value={ order.total_price }
+        value={ moment(order.total_price).format('L') }
         address={ order.delivery_address }
         prefix="seller_orders"
         route="seller/orders/"
