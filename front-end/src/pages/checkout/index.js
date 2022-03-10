@@ -1,36 +1,27 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import api from '../../api';
 import helper from '../../helpers';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import './style.css';
-
-const Arrays = [
-  {
-    id: 1,
-    name: 'coca cola',
-    quantity: 5,
-    valor: 10,
-
-  },
-  {
-    id: 2,
-    name: 'cerveja',
-    quantity: 10,
-    valor: 50,
-
-  },
-];
+import Header from '../../components/header';
 
 function Checkout() {
+  const cart = useSelector((state) => state.cart);
+  const price = useSelector((state) => state.totalPrice.totalPrice);
   const [vendedores, setVendedores] = useState([]);
   const [IdSeller, setIdSeller] = useState(0);
   const [endereço, setEndereço] = useState('');
   const [numero, setNumero] = useState('');
   const [token, setToken] = useState(null);
   const [saleId, setSaleId] = useState('');
+  const [array, setArray] = useState(cart);
+  const [totalPrice, setTotalPrice] = useState(price);
   const history = useHistory();
+
+  console.log('Euu', price);
 
   useEffect(() => {
     api.get('/sales/user')
@@ -60,22 +51,38 @@ function Checkout() {
 
   const onSubmitOrder = async (envet) => {
     envet.preventDefault();
+    const products = array.map(({ id, quantity }) => {
+      const productId = id;
+      return { productId, quantity };
+    });
     await createSale({
-      totalPrice: 10.50,
+      totalPrice,
       deliveryAddress: endereço,
       deliveryNumber: numero,
       status: 'Pendente',
       sellerId: IdSeller,
-      products: [{ productId: 2, quantity: 10 }],
+      products,
     });
-
-    history.push(`/customer/orders/${saleId.id}`);
   };
 
-  console.log(vendedores);
+  if (saleId.id) {
+    history.push(`/customer/orders/${saleId.id}`);
+    console.log('Aqui', saleId.id);
+  }
+
+  const removeItem = (index) => {
+    // setArray(array.filter((item) => item.name !== name));
+    const itens = [...array];
+    setTotalPrice((totalPrice - (itens[index].price * itens[index].quantity).toFixed(2)));
+    itens.splice(index, 1);
+    setArray(itens);
+  };
+
+  console.log('errreer', array);
 
   return (
     <div>
+      <Header />
       <table className="table">
         <caption>Finalizar Pedido</caption>
         <thead>
@@ -89,41 +96,42 @@ function Checkout() {
           </tr>
         </thead>
         <tbody>
-          {Arrays.map((arr, index) => (
-            <tr key={ index }>
-              <td>
-                { index + 1 }
+          {array.map((arr, i) => (
+            <tr key={ i }>
+              <td
+                data-testid={ `customer_checkout__element-order-table-item-number-${i}` }
+              >
+                { i + 1 }
               </td>
 
-              <td data-testid={ `customer_checkout__element-order-table-name-${index}` }>
+              <td data-testid={ `customer_checkout__element-order-table-name-${i}` }>
                 { arr.name }
               </td>
 
               <td
-                data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+                data-testid={ `customer_checkout__element-order-table-quantity-${i}` }
               >
                 { arr.quantity }
               </td>
 
               <td
-                data-testid={ `customer_checkout__element-order-table-unit-price-
-                ${index}` }
+                data-testid={ `customer_checkout__element-order-table-unit-price-${i}` }
               >
-                { arr.valor }
+                { arr.price.replace('.', ',') }
               </td>
 
               <td
-                data-testid={ `customer_checkout__element-order-table-sub-total-
-                ${index}` }
+                data-testid={ `customer_checkout__element-order-table-sub-total-${i}` }
               >
-                { Number(arr.valor) * Number(arr.quantity) }
+                { Number(arr.price * arr.quantity).toFixed(2).replace('.', ',') }
               </td>
 
               <div>
                 <Button
+                  label="Remover"
                   name="Remover"
-                  testid={ `customer_checkout__element-order-table-remove-${index}` }
-                  onClick=""
+                  testid={ `customer_checkout__element-order-table-remove-${i}` }
+                  onClick={ () => removeItem(i) }
                   value={ false }
                 />
               </div>
@@ -135,7 +143,7 @@ function Checkout() {
           <tr>
 
             <td data-testid="customer_checkout__element-order-total-price">
-              {` Total: R$ ${Number(1000)}`}
+              {` Total: R$ ${Number(totalPrice).toFixed(2).replace('.', ',')}`}
 
             </td>
           </tr>
@@ -191,6 +199,7 @@ function Checkout() {
           testid="customer_checkout__input-addressNumber"
         />
         <Button
+          label="FINALIZAR PEDIDO"
           name="FINALIZAR PEDIDO"
           testid="customer_checkout__button-submit-order"
           onClick={ onSubmitOrder }
