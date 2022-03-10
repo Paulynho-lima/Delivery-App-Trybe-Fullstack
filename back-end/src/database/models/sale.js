@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       as: "user_id",
     });
     sale.belongsTo(models.user, {
-      foreignKey: "id",
+      foreignKey: "sellerId",
       as: "seller_id",
     });
   };

@@ -1,1 +1,18 @@
-/* CSS da página de Login */
+.forms {
+  border: 1px solid black;
+  display: grid;
+  margin-left: 30px;
+  margin-top: 50px;
+  width: 53%;
+}
+
+.table {
+  border: 2px solid black;
+  empty-cells: 20;
+  margin-left: 30px;
+  width: 260;
+}
+
+.table td {
+  border: 1px solid black;
+}
