@@ -49,7 +49,7 @@ module.exports = async (loginData) => {
   utils.validate(loginData, loginSchema);
 
   const encodedPassword = helper.encode(loginData.password);
-  
+
   const loggedUser = await user.findOne({ where: { email: loginData.email } });
   
   if (!loggedUser || loggedUser.password !== encodedPassword) {
