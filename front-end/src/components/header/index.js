@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setUser } from '../../app/slices/user';
 import { deleteCart } from '../../app/slices/cart';
+import { setTotal } from '../../app/slices/totalPrice';
 import helpers from '../../helpers';
 import Button from '../button';
 
@@ -23,6 +24,7 @@ function Header() {
     helpers.removeStorage();
     dispatch(setUser(DEFAULT_USER));
     dispatch(deleteCart());
+    dispatch(setTotal(null));
   };
 
   return (
