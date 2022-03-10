@@ -30,7 +30,7 @@ function CardProduto({ id, price, imageUrl, name }) {
       const newCart = cart.filter((productCart) => productCart.id !== id);
       dispatch(setCart(newCart));
     }
-  }, [quantity]);
+  }, [quantity, cart, dispatch, id, name, price]);
 
   return (
     <div className="container">
