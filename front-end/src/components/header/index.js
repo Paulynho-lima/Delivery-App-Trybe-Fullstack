@@ -45,7 +45,7 @@ function Header() {
         { role === 'seller' && (
           <div data-testid="customer_products__element-navbar-link-orders">
             <Link to="/seller/orders">
-              PRODUTOS
+              PEDIDOS
             </Link>
           </div>
         )}

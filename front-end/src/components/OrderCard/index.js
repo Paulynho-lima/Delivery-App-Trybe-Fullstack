@@ -2,29 +2,31 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function Card({ id, status, data, value, address }) {
+function Card({ id, status, data, value, address, prefix, route }) {
   return (
-    <Link key={ id } to={ `seller/orders/${id}` }>
+    <Link key={ id } to={ `${route}${id}` }>
       <section>
-        <div data-testid={ `seller_orders__element-order-id-${id}` }>
+        <div data-testid={ `${prefix}__element-order-id-${id}` }>
           <p>Pedido</p>
           <p>{ id }</p>
         </div>
         <div>
           <div>
-            <div data-testid={ `seller_orders__element-delivery-status-${id}` }>
+            <div data-testid={ `${prefix}__element-delivery-status-${id}` }>
               { status }
             </div>
-            <div data-testid={ `seller_orders__element-order-date-${id}` }>
+            <div data-testid={ `${prefix}__element-order-date-${id}` }>
               { data }
             </div>
-            <div data-testid={ `seller_orders__element-card-price-${id}` }>
+            <div data-testid={ `${prefix}__element-card-price-${id}` }>
               { `R$ ${value.replace('.', ',')}` }
             </div>
           </div>
-          <div data-testid={ `seller_orders__element-card-address-${id}` }>
-            { address }
-          </div>
+          { prefix === 'seller_orders' && (
+            <div data-testid={ `${prefix}__element-card-address-${id}` }>
+              { address }
+            </div>
+          )}
         </div>
       </section>
     </Link>
@@ -39,4 +41,6 @@ Card.propTypes = {
   data: PropTypes.string,
   value: PropTypes.string,
   address: PropTypes.string,
+  prefix: PropTypes.string,
+  route: PropTypes.string,
 }.isRequired;

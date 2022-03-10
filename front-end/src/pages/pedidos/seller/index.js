@@ -22,6 +22,8 @@ function Pedidos() {
         data={ order.sale_date }
         value={ order.total_price }
         address={ order.delivery_address }
+        prefix="seller_orders"
+        route="seller/orders/"
       />
     ));
   };
@@ -30,7 +32,11 @@ function Pedidos() {
     <>
       <Header name={ loggedUser.name } />
       <main>
-        { orders ? renderOrders() : <span>NENHUM VENDA CADASTRADA</span>}
+        {
+          (orders && orders.length !== 0)
+            ? renderOrders()
+            : <span>NENHUMA VENDA CADASTRADA</span>
+        }
       </main>
     </>
   );
