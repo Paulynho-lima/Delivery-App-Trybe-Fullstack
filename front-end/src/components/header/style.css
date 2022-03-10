@@ -1,7 +1,7 @@
 nav {
   align-items: center;
+  background-color: aquamarine;
   display: flex;
-  justify-content: flex-start;
-  min-height: 10vh;
-  width: 100vh;
+  height: 70px;
+  justify-content: space-around;
 }

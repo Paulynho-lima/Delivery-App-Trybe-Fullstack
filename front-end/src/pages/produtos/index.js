@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './style.css';
 import Header from '../../components/header';
 import api from '../../api';
 import CardProduto from '../../components/productCard';
 import Button from '../../components/button';
+import { setTotal } from '../../app/slices/totalPrice';
 
 function Produtos() {
   const loggedUser = useSelector((state) => state.user.token);
@@ -13,6 +14,7 @@ function Produtos() {
   const [products, setProducts] = useState(null);
   const [totalCart, setTotalCart] = useState(0);
   const [redirectTo, setRedirectTo] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     api.get('/products', { headers: { Authorization: loggedUser } })
@@ -32,7 +34,8 @@ function Produtos() {
 
     totalPrice = ((totalValue[totalValue.length - 1] * 100) / 100);
     setTotalCart(totalPrice);
-  }, [cart]);
+    dispatch(setTotal(totalCart));
+  }, [cart, dispatch, totalCart]);
 
   const handleClick = () => setRedirectTo('/customer/checkout');
 

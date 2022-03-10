@@ -9,17 +9,17 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       totalPrice: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(9,2),
         field: "total_price",
         allowNull: false,
       },
       deliveryAddress: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
         field: "delivery_address",
         allowNull: false,
       },
       deliveryNumber: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
         field: "delivery_number",
         allowNull: false,
       },
@@ -30,7 +30,7 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       status: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(50),
         allowNull: false,
         defaultValue: 'pendente'
       },
