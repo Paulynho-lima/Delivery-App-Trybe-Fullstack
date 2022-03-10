@@ -6,7 +6,7 @@ module.exports = (token) => {
   const SECRET = helper.getSecret();
 
   try {
-    const decoded = jwt.verify(token, await SECRET);
+    const decoded = jwt.verify(token, SECRET);
 
     return decoded.data;
   } catch (error) {

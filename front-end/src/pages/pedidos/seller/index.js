@@ -13,22 +13,24 @@ function Pedidos() {
       .then((apiResponse) => setOrders(apiResponse.data));
   }, [loggedUser]);
 
+  const renderOrders = () => {
+    orders.map((order) => (
+      <Card
+        key={ order.id }
+        id={ order.id }
+        status={ order.status }
+        data={ order.sale_date }
+        value={ order.total_price }
+        address={ order.delivery_address }
+      />
+    ));
+  };
+
   return (
     <>
       <Header name={ loggedUser.name } />
       <main>
-        {/* { orders && (
-          orders.map((order) => (
-            <Card
-              key={ order.id }
-              id={ order.id }
-              status={ order.status }
-              data={ order.sale_date }
-              value={ order.total_price }
-              address={ order.delivery_address }
-            />
-          ))
-        )} */}
+        { orders ? renderOrders() : <span>NENHUM VENDA CADASTRADA</span>}
       </main>
     </>
   );
