@@ -23,8 +23,6 @@ function Produtos() {
       }).catch((err) => console.log(err));
   }, [loggedUser]);
 
-  console.log(loggedUser);
-
   useEffect(() => {
     let totalPrice = 0.00;
 

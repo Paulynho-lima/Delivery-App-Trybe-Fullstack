@@ -21,8 +21,6 @@ function Checkout() {
   const [totalPrice, setTotalPrice] = useState(price);
   const history = useHistory();
 
-  console.log('Euu', price);
-
   useEffect(() => {
     api.get('/sales/user')
       .then((response) => {
@@ -67,18 +65,14 @@ function Checkout() {
 
   if (saleId.id) {
     history.push(`/customer/orders/${saleId.id}`);
-    console.log('Aqui', saleId.id);
   }
 
   const removeItem = (index) => {
-    // setArray(array.filter((item) => item.name !== name));
     const itens = [...array];
     setTotalPrice((totalPrice - (itens[index].price * itens[index].quantity).toFixed(2)));
     itens.splice(index, 1);
     setArray(itens);
   };
-
-  console.log('errreer', array);
 
   return (
     <div>
