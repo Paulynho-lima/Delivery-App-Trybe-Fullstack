@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -15,7 +15,25 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState({});
   const [redirectTo, setRedirectTo] = useState(null);
+  const [loggedUser, setLoggedUser] = useState(null);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    helper.getStorage().then((user) => {
+      setLoggedUser(user);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (loggedUser) {
+      dispatch(setUser(loggedUser));
+      if (loggedUser.role === 'customer') {
+        setRedirectTo('/customer/products');
+        return;
+      }
+      setRedirectTo('/seller/orders');
+    }
+  }, [loggedUser, dispatch]);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
