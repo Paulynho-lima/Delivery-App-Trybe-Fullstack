@@ -1,50 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import api from '../../../api';
-import helper from '../../../helpers';
 import Card from '../../../components/card';
 import Header from '../../../components/header';
 
 function Pedidos() {
-  const [loggedUser, setLoggedUser] = useState({});
+  const loggedUser = useSelector((state) => state.user);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    helper.getStorage()
-      .then((data) => setLoggedUser(data));
-  }, []);
+    api.get(`/orders/customer/${loggedUser.id}`,
+      { headers: { Authorization: loggedUser.token } })
+      .then((data) => setOrders(data.data))
+      .catch((error) => console.log(error.response.data));
+  }, [loggedUser]);
 
-  useEffect(() => {
-    api.get(`/orders/customers/${loggedUser.id}`)
-      .then((data) => setOrders(data));
-  }, [loggedUser.id]);
+  console.log(loggedUser);
 
   return (
-    loggedUser && (
-      <>
-        <Header name={ loggedUser.name } />
-        <main>
-          { orders && orders.map((order) => (
-            <Link
-              key={ `link-${loggedUser.id}` }
-              to={ `/customer/orders/${loggedUser.id}` }
-            >
-              <Card
-                key={ order.id }
-                id={ order.id }
-                status={ order.status }
-                date={ order.sale_date }
-                value={ order.total_price }
-                address={ null }
-                testId="customer_orders__element-order-id-"
-                testIdStatus="customer_orders__element-delivery-status-"
-                testIdDate="customer_orders__element-order-date-"
-              />
-            </Link>
-          ))}
-        </main>
-      </>
-    )
+    <>
+      <Header />
+      <main>
+        { (orders.length > 0) && orders.map((order) => (
+          <Card
+            key={ order.id }
+            id={ order.id }
+            status={ order.status }
+            data={ order.saleDate }
+            value={ order.totalPrice }
+            address=""
+            prefix="customer_orders"
+            route="/customer/orders/"
+          />
+        ))}
+      </main>
+    </>
   );
 }
 
