@@ -15,6 +15,8 @@ function Pedidos() {
       .catch((error) => console.log(error.response.data));
   }, [loggedUser]);
 
+  console.log(loggedUser);
+
   return (
     <>
       <Header />
