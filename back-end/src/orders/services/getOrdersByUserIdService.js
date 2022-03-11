@@ -9,6 +9,3 @@ module.exports = async (id) => {
 
   return orders;
 };
-
-
-console.log()

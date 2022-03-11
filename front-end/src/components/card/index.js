@@ -17,7 +17,7 @@ function Card({ id, status, data, value, address, prefix, route }) {
               { status }
             </div>
             <div data-testid={ `${prefix}__element-order-date-${id}` }>
-              { moment(data).format('L') }
+              { moment(data).format('DD/MM/YYYY') }
             </div>
             <div data-testid={ `${prefix}__element-card-price-${id}` }>
               { `R$ ${value.replace('.', ',')}` }
