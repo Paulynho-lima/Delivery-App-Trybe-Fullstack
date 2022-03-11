@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import moment from 'moment';
 import api from '../../../api';
 import Header from '../../../components/header';
 import Button from '../../../components/button';
@@ -8,7 +9,7 @@ import Table from '../../../components/table';
 
 function PedidosClienteDetalhes() {
   const loggedUser = useSelector((state) => state.user);
-  const [order, setOrder] = useState([]);
+  const [order, setOrder] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
@@ -18,9 +19,7 @@ function PedidosClienteDetalhes() {
       .catch((error) => console.log(error.response.data));
   }, [loggedUser, id]);
 
-  const prefix = 'customer_order_details__';
-
-  console.log(order);
+  const prefix = 'customer_order_details';
 
   return (
     <>
@@ -29,31 +28,34 @@ function PedidosClienteDetalhes() {
       <div>
         <nav>
           <p
-            data-testid={ `${prefix}element-order-details-label-order-id` }
+            data-testid={ `${prefix}__element-order-details-label-order-id` }
           >
-            Pedido id
+            {`Pedido ${id}`}
           </p>
           <p
-            data-testid={ `${prefix}element-order-details-label-seller-name` }
+            data-testid={ `${prefix}__element-order-details-label-seller-name` }
           >
-            P. Vend:
+            {`P. Vend: ${id}`}
           </p>
           <p
-            data-testid={ `${prefix}element-order-details-label-order-date` }
+            data-testid={ `${prefix}__element-order-details-label-order-date` }
           >
-            07/04/2021
+            { order && moment(order.saleDate).format('DD/MM/YYYY') }
           </p>
           <p
-            data-testid={ `${prefix}element-order-details-label-delivery-status` }
+            data-testid={ `${prefix}__element-order-details-label-delivery-status` }
           >
-            status
+            {order && order.status}
           </p>
           <Button
             label="MARCAR COMO ENTREGUE"
-            testid={ `${prefix}button-delivery-check` }
+            testid="customer_order_details__button-delivery-check"
           />
         </nav>
-        <Table />
+        {order && <Table
+          prefix
+          order={ order }
+        />}
       </div>
     </>
   );

@@ -1,7 +1,11 @@
-const { sale } = require('../../database/models');
+const { sale, product } = require('../../database/models');
 
 module.exports = async (id) => {
-  const orders = await sale.findOne({ where: { id } });
+  const orders = await sale.findAll({
+     where: { id }, 
+     include: 
+    { model: product, as: 'products', through: { attributes: ['quantity'], as: 'quantity' } },
+     });
 
-  return orders;
+  return orders[0];
 };
