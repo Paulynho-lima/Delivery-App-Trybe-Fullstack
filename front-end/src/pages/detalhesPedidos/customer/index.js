@@ -9,6 +9,7 @@ import Table from '../../../components/table';
 
 function PedidosClienteDetalhes() {
   const loggedUser = useSelector((state) => state.user);
+  const [seller, SetSeller] = useState(null);
   const [order, setOrder] = useState(null);
   const [status, setStatus] = useState('');
   const { id } = useParams();
@@ -30,6 +31,12 @@ function PedidosClienteDetalhes() {
       .then((data) => {
         setOrder(data.data);
         setStatus(data.data.status);
+
+        api.get(`/sales/user/seller/${data.data.sellerId}`,
+          { headers: { Authorization: loggedUser.token } })
+          .then((response) => {
+            SetSeller(response.data.name);
+          });
       })
       .catch((error) => console.log(error.response.data));
   }, [loggedUser, id]);
@@ -50,7 +57,7 @@ function PedidosClienteDetalhes() {
           <p
             data-testid={ `${prefix}__element-order-details-label-seller-name` }
           >
-            {`P. Vend: ${id}`}
+            {`P. Vend: ${seller}`}
           </p>
           <p
             data-testid={ `${prefix}__element-order-details-label-order-date` }
@@ -66,13 +73,14 @@ function PedidosClienteDetalhes() {
             label="MARCAR COMO ENTREGUE"
             testid="customer_order_details__button-delivery-check"
             onClick={ handleClick }
-            value={ false }
+            value={ status === 'Entregue' }
           />
         </nav>
         {order && <Table
           prefix
           order={ order }
         />}
+        <p>{`Total: ${order && order.totalPrice}`}</p>
       </div>
     </>
   );
