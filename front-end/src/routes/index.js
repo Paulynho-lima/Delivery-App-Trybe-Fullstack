@@ -5,6 +5,7 @@ import Cadastro from '../pages/cadastro';
 import Pedidos from '../pages/pedidos/seller';
 import Produtos from '../pages/produtos';
 import PedidosCliente from '../pages/pedidos/customer';
+import PedidosVendedor from '../pages/detalhesPedidos/seller';
 import Checkout from '../pages/checkout';
 import PedidosClienteDetalhes from '../pages/detalhesPedidos/customer';
 
@@ -15,6 +16,7 @@ export default function Routes() {
         <Route path="/customer/checkout" component={ Checkout } />
         <Route path="/customer/orders/:id" component={ PedidosClienteDetalhes } />
         <Route path="/customer/orders" component={ PedidosCliente } />
+        <Route path="/seller/orders/:id" component={ PedidosVendedor } />
         <Route path="/seller/orders" component={ Pedidos } />
         <Route path="/customer/products" component={ Produtos } />
         <Route path="/register" component={ Cadastro } />
