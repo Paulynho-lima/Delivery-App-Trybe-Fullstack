@@ -73,14 +73,22 @@ function PedidosClienteDetalhes() {
             label="MARCAR COMO ENTREGUE"
             testid="customer_order_details__button-delivery-check"
             onClick={ handleClick }
-            value={ status === 'Entregue' }
+            value={
+              status === 'Preparando'
+              || status === 'Pendente'
+              || status === 'Entregue'
+            }
           />
         </nav>
         {order && <Table
           prefix
           order={ order }
         />}
-        <p>{`Total: ${order && order.totalPrice}`}</p>
+        <p
+          data-testid="customer_order_details__element-order-total-price"
+        >
+          { `Total: ${order && (order.totalPrice.replace('.', ','))}` }
+        </p>
       </div>
     </>
   );
