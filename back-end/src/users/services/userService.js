@@ -8,9 +8,8 @@ const getUserSaleService = async () => {
 
 const getSellerById = async (id) => {
 const seller = await user.findOne({ where: { id } });
-console.log(seller);
 
-    return seller;
+return seller;
 };
 
   module.exports = {

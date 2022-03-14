@@ -1,36 +1,42 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import api from '../../../api';
-import helper from '../../../helpers';
-import Card from '../../../components/card';
+import Card from '../../../components/OrderCard';
 import Header from '../../../components/header';
 
 function Pedidos() {
-  const [loggedUser, setLoggedUser] = useState({});
+  const loggedUser = useSelector((state) => state.user.token);
+  const [orders, setOrders] = useState(null);
 
   useEffect(() => {
-    helper.getStorage()
-      .then((data) => setLoggedUser(data));
-  }, []);
-
-  useEffect(() => {
-    api.get('/sales', { headers: { Authorization: `Bearer ${loggedUser.token}` } });
+    api.get('/order', { headers: { Authorization: loggedUser } })
+      .then((apiResponse) => setOrders(apiResponse.data));
   }, [loggedUser]);
 
   return (
-    loggedUser && (
-      <>
-        <Header name={ loggedUser.name } />
-        <main>
-          <Card
-            id="0001"
-            status="PENDENTE"
-            data="00/00/0000"
-            value="R$ 00,00"
-            address="Rua X, Bairo Y, 000"
-          />
-        </main>
-      </>
-    )
+    <>
+      <Header name={ loggedUser.name } />
+      <main>
+        {
+          (orders && orders.length !== 0)
+            ? (
+              orders.map((order) => (
+                <Card
+                  key={ order.id }
+                  id={ order.id }
+                  status={ order.status }
+                  data={ order.saleDate }
+                  value={ order.totalPrice }
+                  address={ `${order.deliveryAddress}, ${order.deliveryNumber}` }
+                  prefix="seller_orders"
+                  route="/seller/orders/"
+                />
+              ))
+            )
+            : <span>NENHUMA VENDA CADASTRADA</span>
+        }
+      </main>
+    </>
   );
 }
 

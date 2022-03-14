@@ -127,6 +127,7 @@ function Checkout() {
                   testid={ `customer_checkout__element-order-table-remove-${i}` }
                   onClick={ () => removeItem(i) }
                   value={ false }
+                  id="btn-remove"
                 />
               </div>
 
@@ -154,7 +155,7 @@ function Checkout() {
           <select
             id="vendedores"
             required
-            Value={ IdSeller }
+            value={ IdSeller }
             data-testid="customer_checkout__select-seller"
             onChange={ ({ target }) => setIdSeller(Number(target.value)) }
           >
@@ -198,6 +199,7 @@ function Checkout() {
           testid="customer_checkout__button-submit-order"
           onClick={ onSubmitOrder }
           value={ false }
+          id="btn-finish-order"
         />
 
       </form>

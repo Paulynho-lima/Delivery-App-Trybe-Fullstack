@@ -31,6 +31,7 @@ function Produtos() {
       totalPrice = sumTotal;
       return sumTotal;
     });
+
     totalPrice = ((totalValue[totalValue.length - 1] * 100) / 100);
     setTotalCart(totalPrice);
     dispatch(setTotal(totalCart));

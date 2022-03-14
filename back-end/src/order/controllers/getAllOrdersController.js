@@ -1,5 +1,5 @@
-const orderService = require('../services');
 const utils = require('../../utils');
+const orderService = require('../services');
 
 module.exports = async (_request, response, next) => {
   try {

@@ -15,7 +15,7 @@ route.use('/', login);
 route.use('/customer/orders', sales);
 route.use('/sales/user', user);
 route.use('/register', customer);
-route.use('/orders', order);
+route.use('/order', order);
 route.use('/products', product);
 route.use('/images', image);
 
