@@ -10,12 +10,27 @@ import Table from '../../../components/table';
 function PedidosClienteDetalhes() {
   const loggedUser = useSelector((state) => state.user);
   const [order, setOrder] = useState(null);
+  const [status, setStatus] = useState('');
   const { id } = useParams();
+
+  const handleClick = () => {
+    const data = {
+      status: 'Entregue',
+    };
+
+    api.put(`/orders/customer/update/${id}`, data,
+      { headers: { Authorization: loggedUser.token } })
+      .then((response) => setStatus(response.data.status))
+      .catch((error) => console.log(error.response.data));
+  };
 
   useEffect(() => {
     api.get(`/orders/customer/order/${id}`,
       { headers: { Authorization: loggedUser.token } })
-      .then((data) => setOrder(data.data))
+      .then((data) => {
+        setOrder(data.data);
+        setStatus(data.data.status);
+      })
       .catch((error) => console.log(error.response.data));
   }, [loggedUser, id]);
 
@@ -45,11 +60,13 @@ function PedidosClienteDetalhes() {
           <p
             data-testid={ `${prefix}__element-order-details-label-delivery-status` }
           >
-            {order && order.status}
+            { status }
           </p>
           <Button
             label="MARCAR COMO ENTREGUE"
             testid="customer_order_details__button-delivery-check"
+            onClick={ handleClick }
+            value={ false }
           />
         </nav>
         {order && <Table
