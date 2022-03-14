@@ -9,7 +9,7 @@ function Pedidos() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    api.get(`/orders/customer/${loggedUser.id}`,
+    api.get(`/order/customer/${loggedUser.id}`,
       { headers: { Authorization: loggedUser.token } })
       .then((data) => setOrders(data.data))
       .catch((error) => console.log(error.response.data));

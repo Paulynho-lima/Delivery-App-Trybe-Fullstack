@@ -19,14 +19,14 @@ function PedidosClienteDetalhes() {
       status: 'Entregue',
     };
 
-    api.put(`/orders/customer/update/${id}`, data,
+    api.put(`/order/customer/update/${id}`, data,
       { headers: { Authorization: loggedUser.token } })
       .then((response) => setStatus(response.data.status))
       .catch((error) => console.log(error.response.data));
   };
 
   useEffect(() => {
-    api.get(`/orders/customer/order/${id}`,
+    api.get(`/order/customer/order/${id}`,
       { headers: { Authorization: loggedUser.token } })
       .then((data) => {
         setOrder(data.data);
