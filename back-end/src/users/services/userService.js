@@ -6,6 +6,14 @@ const getUserSaleService = async () => {
      return users;
   };
 
+const getSellerById = async (id) => {
+const seller = await user.findOne({ where: { id } });
+console.log(seller);
+
+    return seller;
+};
+
   module.exports = {
       getUserSaleService,
+      getSellerById,
   };
