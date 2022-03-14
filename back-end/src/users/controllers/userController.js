@@ -1,5 +1,5 @@
 const utils = require('../../utils');
-const { getUserSaleService } = require('../services/userService');
+const { getUserSaleService, getSellerById } = require('../services/userService');
 
 const getUserSaleController = async (_req, res, next) => {
     try {
@@ -12,6 +12,20 @@ const getUserSaleController = async (_req, res, next) => {
     }
 };
 
+const getSellerByIdController = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const seller = await getSellerById(id);
+        
+        return res.status(utils.status.success).json(seller);
+    } catch (error) {
+        console.log(`POST GETSALES: ${error.message}`);
+        return next(error);
+    }
+};
+
 module.exports = {
     getUserSaleController,
+    getSellerByIdController,
 };

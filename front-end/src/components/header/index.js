@@ -9,6 +9,7 @@ import helpers from '../../helpers';
 import Button from '../button';
 
 const DEFAULT_USER = {
+  id: null,
   name: null,
   email: null,
   role: null,
