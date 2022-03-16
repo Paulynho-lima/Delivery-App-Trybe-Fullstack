@@ -1,5 +1,7 @@
-const helper = require('.');
+import constantes from './constantes';
 
-module.exports = async () => {
-  localStorage.removeItem(helper.contantes.LOCALSTORAGEKEY);
+const removeLocalStorage = async () => {
+  localStorage.removeItem(constantes.LOCALSTORAGEKEY);
 };
+
+export default removeLocalStorage;

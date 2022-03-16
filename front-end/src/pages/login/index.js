@@ -19,7 +19,7 @@ function Login() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    helper.getStorage().then((user) => {
+    helper.getLocalStorage().then((user) => {
       setLoggedUser(user);
     });
   }, []);
