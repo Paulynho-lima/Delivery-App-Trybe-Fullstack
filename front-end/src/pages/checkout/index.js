@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import api from '../../api';
-import helper from '../../helpers';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import './style.css';
@@ -11,11 +10,11 @@ import Header from '../../components/header';
 function Checkout() {
   const cart = useSelector((state) => state.cart);
   const price = useSelector((state) => state.totalPrice.totalPrice);
+  const token = useSelector((state) => state.user.token);
   const [vendedores, setVendedores] = useState([]);
   const [IdSeller, setIdSeller] = useState(0);
   const [endereço, setEndereço] = useState('');
   const [numero, setNumero] = useState('');
-  const [token, setToken] = useState(null);
   const [saleId, setSaleId] = useState('');
   const [array, setArray] = useState(cart);
   const [totalPrice, setTotalPrice] = useState(price);
@@ -28,10 +27,6 @@ function Checkout() {
       })
       .catch((err) => (err.response.data));
   }, []);
-
-  helper.getStorage().then((resp) => {
-    setToken(resp.token);
-  });
 
   const header = {
     headers: {

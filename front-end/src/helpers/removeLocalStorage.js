@@ -1,7 +1,7 @@
 import constantes from './constantes';
 
 const removeLocalStorage = async () => {
-  localStorage.removeItem(constantes.LOCALSTORAGEKEY);
+  localStorage.removeItem(constantes);
 };
 
 export default removeLocalStorage;

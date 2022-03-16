@@ -1,11 +1,11 @@
 import constantes from './constantes';
-import getLocalStorage from './getLocalStorage';
-import removeLocalStorage from './removeLocalStorage';
-import setLocalStorage from './setLocalStorage';
+import getStorage from './getLocalStorage';
+import removeStorage from './removeLocalStorage';
+import setStorage from './setLocalStorage';
 
 export default {
   constantes,
-  getLocalStorage,
-  removeLocalStorage,
-  setLocalStorage,
+  getStorage,
+  removeStorage,
+  setStorage,
 };
