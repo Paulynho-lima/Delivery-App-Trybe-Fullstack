@@ -12,6 +12,9 @@ export default function Routes() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route exact path="/" >
+          <Redirect to="/login" />
+        </Route>
         <Route path="/customer/checkout" component={ Checkout } />
         <Route path="/customer/orders/:id" component={ PedidosDetalhes } />
         <Route path="/customer/orders" component={ PedidosCliente } />
@@ -20,7 +23,7 @@ export default function Routes() {
         <Route path="/customer/products" component={ Produtos } />
         <Route path="/register" component={ Cadastro } />
         <Route path="/login" component={ Login } />
-        <Redirect from="/" to="/login" />
+        {/* <Redirect from="/" to="/login" /> */}
       </Switch>
     </BrowserRouter>
   );
