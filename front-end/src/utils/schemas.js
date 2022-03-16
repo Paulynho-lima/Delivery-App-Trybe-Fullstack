@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 const MIN_PASSWORD_LENGTH = 6;
 const MIN_FULLNAME_LENGTH = 12;
@@ -14,7 +14,7 @@ const registerSchema = Joi.object({
   password: Joi.string().min(MIN_PASSWORD_LENGTH).required(),
 });
 
-module.exports = {
+export {
   loginSchema,
   registerSchema,
 };

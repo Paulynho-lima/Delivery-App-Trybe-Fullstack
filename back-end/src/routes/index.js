@@ -12,9 +12,9 @@ const route = express.Router();
 
 route.use('/login', login);
 route.use('/', login);
+route.use('/register', customer);
 route.use('/customer/orders', sales);
 route.use('/sales/user', user);
-route.use('/register', customer);
 route.use('/order', order);
 route.use('/products', product);
 route.use('/images', image);

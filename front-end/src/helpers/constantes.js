@@ -1,3 +1,3 @@
-module.exports = {
-  LOCALSTORAGEKEY: 'user',
-};
+const LOCALSTORAGEKEY = 'user';
+
+export default LOCALSTORAGEKEY;

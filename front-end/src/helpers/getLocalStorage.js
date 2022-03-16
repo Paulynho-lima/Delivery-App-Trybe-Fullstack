@@ -1,5 +1,7 @@
-const helper = require('.');
+import constantes from './constantes';
 
-module.exports = async () => (
-  JSON.parse(localStorage.getItem(helper.contantes.LOCALSTORAGEKEY))
+const getLocalStorage = async () => (
+  JSON.parse(localStorage.getItem(constantes))
 );
+
+export default getLocalStorage;

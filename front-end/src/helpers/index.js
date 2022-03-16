@@ -1,4 +1,11 @@
-module.exports.setStorage = require('./setLocalStorage');
-module.exports.getStorage = require('./getLocalStorage');
-module.exports.contantes = require('./constantes');
-module.exports.removeStorage = require('./removeLocalStorage');
+import constantes from './constantes';
+import getStorage from './getLocalStorage';
+import removeStorage from './removeLocalStorage';
+import setStorage from './setLocalStorage';
+
+export default {
+  constantes,
+  getStorage,
+  removeStorage,
+  setStorage,
+};
