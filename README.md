@@ -1,108 +1,8 @@
-### Termos de acordo
+# Boas vindas ao repositório do projeto App de Delivery! 🚀
 
-Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.
+Projeto em grupo para colocar em pratica os conhecimentos em backend e frontend.
 
----
-
-# Boas vindas ao repositório do projeto App de Delivery!
-
-Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Tenha atenção a cada passo, e se tiver qualquer dúvida nos envie por _Slack_! #vqv 🚀
-
-Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir desse repositório, utilizando uma branch específica e um _Pull Request_ para colocar seus códigos.
-
----
-
-# Sumário
-
-- [Boas vindas ao repositório do projeto App de Delivery!](#boas-vindas-ao-repositório-do-projeto-app-de-delivery)
-- [Sumário](#sumário)
-- [Contexto](#contexto)
-- [Habilidades](#habilidades)
-- [Entregáveis](#entregáveis)
-  - [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
-  - [Desenvolvimento](#desenvolvimento)
-  - [Data de Entrega](#data-de-entrega)
-- [Instruções para entregar seu projeto:](#instruções-para-entregar-seu-projeto)
-  - [Antes de começar a desenvolver](#antes-de-começar-a-desenvolver)
-  - [Durante o desenvolvimento](#durante-o-desenvolvimento)
-  - [Scripts relevantes do `package.json` principal](#scripts-relevantes-do-packagejson-principal)
-  - [Preparando o campo e iniciando o projeto](#preparando-o-campo-e-iniciando-o-projeto)
-  - [Linter](#linter)
-  - [Sequelize](#sequelize)
-  - [Componentização](#componentização)
-  - [Data-testids](#data-testids)
-- [Requisitos do projeto](#requisitos-do-projeto)
-  - [`Fluxo Comum`](#fluxo-comum)
-    - [`01login.test`](#01logintest)
-      - [1 - Crie uma tela de login que deve ser acessível pelos endpoints / e /login no navegador](#1---crie-uma-tela-de-login-que-deve-ser-acessível-pelos-endpoints--e-login-no-navegador)
-      - [2 - Crie os elementos da tela de login com os data-testids disponíveis no protótipo](#2---crie-os-elementos-da-tela-de-login-com-os-data-testids-disponíveis-no-protótipo)
-      - [3 - Desenvolva a tela de login de maneira que ela impossibilite o login com dados mal-formatados](#3---desenvolva-a-tela-de-login-de-maneira-que-ela-impossibilite-o-login-com-dados-mal-formatados)
-      - [4 - Desenvolva a tela de login de maneira que ela impossibilite o login com dados válidos, porém inexistentes no banco de dados](#4---desenvolva-a-tela-de-login-de-maneira-que-ela-impossibilite-o-login-com-dados-válidos-porém-inexistentes-no-banco-de-dados)
-      - [5 - Desenvolva a tela de login de maneira que ela possibilite fazer o login com dados válidos e existentes no banco de dados](#5---desenvolva-a-tela-de-login-de-maneira-que-ela-possibilite-fazer-o-login-com-dados-válidos-e-existentes-no-banco-de-dados)
-    - [`02register.test`](#02registertest)
-      - [6 - Crie uma tela de registro que deve ser acessível via endpoint /register no navegador e pelo botão de registro na tela de login](#6---crie-uma-tela-de-registro-que-deve-ser-acessível-via-endpoint-register-no-navegador-e-pelo-botão-de-registro-na-tela-de-login)
-      - [7 - Crie os elementos da tela de registro com os data-testids disponíveis no protótipo](#7---crie-os-elementos-da-tela-de-registro-com-os-data-testids-disponíveis-no-protótipo)
-      - [8 - Desenvolva a tela de registro de maneira que ela impossibilite o cadastro com dados mal-formatados](#8---desenvolva-a-tela-de-registro-de-maneira-que-ela-impossibilite-o-cadastro-com-dados-mal-formatados)
-      - [9 - Desenvolva a tela de registro de maneira que ela possibilite cadastrar com dados válidos](#9---desenvolva-a-tela-de-registro-de-maneira-que-ela-possibilite-cadastrar-com-dados-válidos)
-      - [10 - Desenvolva a tela de registro de maneira que ela impossibilite o cadastro de um usuário já existente](#10---desenvolva-a-tela-de-registro-de-maneira-que-ela-impossibilite-o-cadastro-de-um-usuário-já-existente)
-  - [`Fluxo do Cliente`](#fluxo-do-cliente)
-    - [`03customer_products.test`](#03customer_productstest)
-      - [11 - Crie uma tela de produtos do cliente contendo uma barra de navegação - navbar - que servirá também para demais telas das pessoas usuárias](#11---crie-uma-tela-de-produtos-do-cliente-contendo-uma-barra-de-navegação---navbar---que-servirá-também-para-demais-telas-das-pessoas-usuárias)
-      - [12 - Desenvolva a tela de produtos do cliente criando os demais elementos com os data-testids disponíveis no protótipo](#12---desenvolva-a-tela-de-produtos-do-cliente-criando-os-demais-elementos-com-os-data-testids-disponíveis-no-protótipo)
-      - [13 - Desenvolva a tela de produtos do cliente de forma que ela pressuponha dados válidos da pessoa usuária armazenados no localStorage](#13---desenvolva-a-tela-de-produtos-do-cliente-de-forma-que-ela-pressuponha-dados-válidos-da-pessoa-usuária-armazenados-no-localstorage)
-      - [14 - Desenvolva a tela de produtos do cliente de forma que os cards de todos os produtos pré-cadastrados contenham os valores corretos](#14---desenvolva-a-tela-de-produtos-do-cliente-de-forma-que-os-cards-de-todos-os-produtos-pré-cadastrados-contenham-os-valores-corretos)
-      - [15 - Desenvolva a tela de produtos do cliente de forma que o preço total esteja correto após a adição de itens aleatórios](#15---desenvolva-a-tela-de-produtos-do-cliente-de-forma-que-o-preço-total-esteja-correto-após-a-adição-de-itens-aleatórios)
-      - [16 - Desenvolva a tela de produtos do cliente de forma que haja um botão de carrinho que redirecionará para a tela de checkout caso itens sejam adicionados](#16---desenvolva-a-tela-de-produtos-do-cliente-de-forma-que-haja-um-botão-de-carrinho-que-redirecionará-para-a-tela-de-checkout-caso-itens-sejam-adicionados)
-    - [`04customer_checkout.test`](#04customer_checkouttest)
-      - [17 - Crie uma tela de checkout do cliente com elementos com os data-testids disponíveis no protótipo](#17---crie-uma-tela-de-checkout-do-cliente-com-elementos-com-os-data-testids-disponíveis-no-protótipo)
-      - [18 - Desenvolva a tela de checkout do cliente de forma a possuir os dados corretos do carrinho e preço total](#18---desenvolva-a-tela-de-checkout-do-cliente-de-forma-a-possuir-os-dados-corretos-do-carrinho-e-preço-total)
-      - [19 - Desenvolva a tela de checkout do cliente de forma que seja possível remover itens do carrinho](#19---desenvolva-a-tela-de-checkout-do-cliente-de-forma-que-seja-possível-remover-itens-do-carrinho)
-      - [20 - Desenvolva a tela de checkout do cliente de forma a nos redirecionar para a tela de detalhes do pedido feito após a finalização do mesmo](#20---desenvolva-a-tela-de-checkout-do-cliente-de-forma-a-nos-redirecionar-para-a-tela-de-detalhes-do-pedido-feito-após-a-finalização-do-mesmo)
-      - [21 - Desenvolva a tela de checkout do cliente de forma a gerar uma nova venda na tabela sales, assim como relações em salesProducts ao finalizar o pedido](#21---desenvolva-a-tela-de-checkout-do-cliente-de-forma-a-gerar-uma-nova-venda-na-tabela-sales-assim-como-relações-em-salesproducts-ao-finalizar-o-pedido)
-    - [`05customer_orders.test`](#05customer_orderstest)
-      - [22 - Crie uma tela de pedidos do cliente com elementos a partir dos data-testids disponíveis no protótipo](#22---crie-uma-tela-de-pedidos-do-cliente-com-elementos-a-partir-dos-data-testids-disponíveis-no-protótipo)
-      - [23 - Desenvolva a tela de pedidos do cliente de forma a conter a lista de pedidos do mesmo com os dados corretos](#23---desenvolva-a-tela-de-pedidos-do-cliente-de-forma-a-conter-a-lista-de-pedidos-do-mesmo-com-os-dados-corretos)
-      - [24 - Desenvolva a tela de pedidos do cliente de forma a dar acesso à tela de detalhes de um pedido ao clicar no card do mesmo](#24---desenvolva-a-tela-de-pedidos-do-cliente-de-forma-a-dar-acesso-à-tela-de-detalhes-de-um-pedido-ao-clicar-no-card-do-mesmo)
-    - [`06customer_order_details.test`](#06customer_order_detailstest)
-      - [25 - Crie uma tela de detalhes do pedido do cliente com elementos a partir dos data-testids disponíveis no protótipo](#25---crie-uma-tela-de-detalhes-do-pedido-do-cliente-com-elementos-a-partir-dos-data-testids-disponíveis-no-protótipo)
-      - [26 - Desenvolva a tela de detalhes do pedido do cliente de forma a possuir os dados corretos da venda](#26---desenvolva-a-tela-de-detalhes-do-pedido-do-cliente-de-forma-a-possuir-os-dados-corretos-da-venda)
-  - [`Fluxo da Pessoa Vendedora`](#fluxo-da-pessoa-vendedora)
-    - [`07seller_orders.test`](#07seller_orderstest)
-      - [27 - Crie uma tela de pedidos da pessoa vendedora com elementos a partir dos data-testids disponíveis no protótipo](#27---crie-uma-tela-de-pedidos-da-pessoa-vendedora-com-elementos-a-partir-dos-data-testids-disponíveis-no-protótipo)
-      - [28 - Desenvolva a tela de pedidos da pessoa vendedora de forma a conter a lista de pedidos do mesmo com os dados corretos](#28---desenvolva-a-tela-de-pedidos-da-pessoa-vendedora-de-forma-a-conter-a-lista-de-pedidos-do-mesmo-com-os-dados-corretos)
-      - [29 - Desenvolva a tela de pedidos da pessoa vendedora de forma a dar acesso à tela de detalhes de um pedido ao clicar no card do mesmo](#29---desenvolva-a-tela-de-pedidos-da-pessoa-vendedora-de-forma-a-dar-acesso-à-tela-de-detalhes-de-um-pedido-ao-clicar-no-card-do-mesmo)
-    - [`08seller_order_details.test`](#08seller_order_detailstest)
-      - [30 - Crie uma tela de detalhes do pedido da pessoa vendedora com elementos a partir dos data-testids disponíveis no protótipo](#30---crie-uma-tela-de-detalhes-do-pedido-da-pessoa-vendedora-com-elementos-a-partir-dos-data-testids-disponíveis-no-protótipo)
-      - [31 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a possuir os dados corretos da venda](#31---desenvolva-a-tela-de-detalhes-do-pedido-da-pessoa-vendedora-de-forma-a-possuir-os-dados-corretos-da-venda)
-  - [`Validação do Status do Pedido`](#validação-do-status-do-pedido)
-      - [32 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a ser capaz de alterar o status do pedido](#32---desenvolva-a-tela-de-detalhes-do-pedido-da-pessoa-vendedora-de-forma-a-ser-capaz-de-alterar-o-status-do-pedido)
-    - [`09customer_seller_status_sync.test`](#09customer_seller_status_synctest)
-      - [33 - Garanta que o status do pedido atualizado na tela de detalhes do pedido da pessoa vendedora seja refletido na tela de detalhes do pedido do cliente após atualização das páginas](#33---garanta-que-o-status-do-pedido-atualizado-na-tela-de-detalhes-do-pedido-da-pessoa-vendedora-seja-refletido-na-tela-de-detalhes-do-pedido-do-cliente-após-atualização-das-páginas)
-      - [34 - Garanta que o status do pedido atualizado na tela de detalhes do pedido da pessoa vendedora seja refletido na tela de lista de pedidos do cliente após atualização das páginas](#34---garanta-que-o-status-do-pedido-atualizado-na-tela-de-detalhes-do-pedido-da-pessoa-vendedora-seja-refletido-na-tela-de-lista-de-pedidos-do-cliente-após-atualização-das-páginas)
-      - [35 - Garanta que o status do pedido atualizado na tela de detalhes do pedido do cliente seja refletido na tela de lista de pedidos da pessoa vendedora após atualização das páginas](#35---garanta-que-o-status-do-pedido-atualizado-na-tela-de-detalhes-do-pedido-do-cliente-seja-refletido-na-tela-de-lista-de-pedidos-da-pessoa-vendedora-após-atualização-das-páginas)
-    - [`10customer_seller_socket_status_sync.test`](#10customer_seller_socket_status_synctest)
-      - [36 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a interagir em tempo real com a tela de detalhes do pedido do cliente](#36---desenvolva-a-tela-de-detalhes-do-pedido-da-pessoa-vendedora-de-forma-a-interagir-em-tempo-real-com-a-tela-de-detalhes-do-pedido-do-cliente)
-      - [37 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a interagir em tempo real com a tela de lista de pedidos do cliente](#37---desenvolva-a-tela-de-detalhes-do-pedido-da-pessoa-vendedora-de-forma-a-interagir-em-tempo-real-com-a-tela-de-lista-de-pedidos-do-cliente)
-      - [38 - Desenvolva a tela de detalhes do pedido do cliente de forma a interagir em tempo real com a tela de lista de pedidos da pessoa vendedora](#38---desenvolva-a-tela-de-detalhes-do-pedido-do-cliente-de-forma-a-interagir-em-tempo-real-com-a-tela-de-lista-de-pedidos-da-pessoa-vendedora)
-  - [`Fluxo da Pessoa Administradora`](#fluxo-da-pessoa-administradora)
-    - [`11admin_manage_users.test`](#11admin_manage_userstest)
-      - [39 - Crie uma tela de pessoa administradora com elementos a partir dos data-testids disponíveis no protótipo](#39---crie-uma-tela-de-pessoa-administradora-com-elementos-a-partir-dos-data-testids-disponíveis-no-protótipo)
-      - [40 - Desenvolva a tela da pessoa administradora de forma a validar o formulário de cadastro](#40---desenvolva-a-tela-da-pessoa-administradora-de-forma-a-validar-o-formulário-de-cadastro)
-      - [41 - Desenvolva a tela da pessoa administradora de forma que seja possível cadastrar pessoas usuárias válidas](#41---desenvolva-a-tela-da-pessoa-administradora-de-forma-que-seja-possível-cadastrar-pessoas-usuárias-válidas)
-      - [42 - Desenvolva a tela da pessoa administradora de forma que ela impossibilite o cadastro de pessoas usuárias já existentes](#42---desenvolva-a-tela-da-pessoa-administradora-de-forma-que-ela-impossibilite-o-cadastro-de-pessoas-usuárias-já-existentes)
-      - [43 - (`Bônus`) Desenvolva a tela da pessoa administradora de forma que haja uma tabela de pessoas usuárias cadastradas](#43---bônus-desenvolva-a-tela-da-pessoa-administradora-de-forma-que-haja-uma-tabela-de-pessoas-usuárias-cadastradas)
-      - [44 - (`Bônus`) Desenvolva a tela da pessoa administradora de forma que seja possível deletar pessoas usuárias na tabela](#44---bônus-desenvolva-a-tela-da-pessoa-administradora-de-forma-que-seja-possível-deletar-pessoas-usuárias-na-tabela)
-  - [`Cobertura de Testes`](#cobertura-de-testes)
-    - [`12coverage_tests.test`](#12coverage_teststest)
-      - [45 - Crie testes que cubram no mínimo 30 por cento dos arquivos do front-end e back-end em src com um mínimo de 75 linhas cobertas em cada](#45---crie-testes-que-cubram-no-mínimo-30-por-cento-dos-arquivos-do-front-end-e-back-end-em-src-com-um-mínimo-de-75-linhas-cobertas-em-cada)
-      - [46 - (`Bônus`) Crie testes que cubram no mínimo 60 por cento dos arquivos do front-end e back-end em src com um mínimo de 150 linhas cobertas em cada](#46---bônus-crie-testes-que-cubram-no-mínimo-60-por-cento-dos-arquivos-do-front-end-e-back-end-em-src-com-um-mínimo-de-150-linhas-cobertas-em-cada)
-      - [47 - (`Bônus`) Crie testes que cubram no mínimo 90 por cento dos arquivos do front-end e back-end em src com um mínimo de 225 linhas cobertas em cada](#47---bônus-crie-testes-que-cubram-no-mínimo-90-por-cento-dos-arquivos-do-front-end-e-back-end-em-src-com-um-mínimo-de-225-linhas-cobertas-em-cada)
-  - [`Extra não avaliativo`](#extra-não-avaliativo)
-    - [Realizar o deploy do projeto back-end e front-end](#realizar-o-deploy-do-projeto-back-end-e-front-end)
-    - [Qual poderia ser o próximo passo?](#qual-poderia-ser-o-próximo-passo)
-- [Depois de terminar o desenvolvimento](#depois-de-terminar-o-desenvolvimento)
-- [Revisando um pull request](#revisando-um-pull-request)
-- [Avisos finais](#avisos-finais)
+Aqui você vai encontrar os detalhes de como foi estruturado o desenvolvimento desse projeto a partir desse repositório.
 
 ---
 
@@ -132,7 +32,7 @@ Agora é mãos à obra! Vamos começar?
 
 # Habilidades
 
-Nesse projeto, você deverá ser capaz de:
+Nesse projeto, o grupo foi capaz de:
 
 - Manter aderência do código à especificação. Seu programa deve se comportar como especificado no repositório, no [protótipo](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=0%3A1) e no [Diagrama de ER](./assets/readme/eer.png);
 - Manter a organização do seu código e a arquitetura geral da aplicação (tanto da API quando do front-end);
@@ -142,206 +42,161 @@ Nesse projeto, você deverá ser capaz de:
 - Implementar a funcionalidade de comunicação em tempo real, utilizando o socket.io.
 - Manter aderência aos princípios SOLID;
 
-# Entregáveis
+## O que foi desenvolvido
 
-- **Cada grupo** terá uma branch específica no formato `main-group-X`. Ex: `main-group-1`; `main-group-2`; etc;
+Esse foi o projeto mais desafiador até agora! Nessa aplicação, fomos responsáveis por criar e integrar tanto o back-end quanto o front-end!
 
-- **Para entregar o seu projeto** você deverá criar um `Pull Request` **base** neste repositório no formato `[MAIN GROUP X] [BASE]`, que deve apontar a branch `main-group-X` para branch `main`, ela será sua **PR principal** e deve agregar ao final todo o trabalho do seu grupo para avaliação;
+O projeto em foi super divertido! Como dado no contexto, criamos uma plataforma de delivery de cerveja. 🍻
 
-- **Cada feature/fix/etc** deve ser desenvolvida em uma nova branch, cujo formato **preferencialmente** deve ser `main-group-X-<alteração>-<especificação>`. Ex: `main-group-1-feat-login-form`. Isso ajudará tanto o seu time quanto a equipe de instrução a localizar seus trabalhos no projeto;
+Para facilitar o entendimento, dividimos a aplicação em ** 4 fluxos principais**:
 
-- **Cada feature/fix/etc** deve, ao término, ser mergeada (preferencialmente via PR, com code review e aprovação de todo o grupo) com a **branch principal do grupo**, onde ocorrerá a avaliação. Ex: `main-group-1-feat-login-form` deve ser mergeado com `main-group-1`;
+- **Fluxo Comum** que compreende:
 
-- **Cada PR** deve, **preferencialmente** ter o título no formato `[MAIN GROUP X] [CONTEXTO] [ALTERAÇÃO] [DESCRIÇÃO]`. Ex: `[MAIN GROUP 1] [API] [FEAT] [LOGIN]`; `[MAIN GROUP 1] [FRONT] [FEAT] [LOGIN-FORM]`; etc. Isso ajudará tanto o seu time quanto a equipe de instrução a localizar seus trabalhos no projeto.
-
-Lembre-se que você pode consultar nosso conteúdo sobre [Git & GitHub](https://app.betrybe.com/course/fundamentals/git-github-e-internet/git-github-o-que-e-e-para-que-serve/70601960-ba49-43ee-b80f-dfa5205ec9d5/dinamica-de-controle-de-versao/fd17caf0-86ba-4395-a2fd-01dca61c4618?use_case=calendar) sempre que precisar!
-
-## O que deverá ser desenvolvido
-
-Esse será o projeto mais desafiador até agora! Nessa aplicação, vocês serão responsáveis por criar e integrar tanto o back-end quanto o front-end!
-
-O projeto em si é super divertido! Como dado no contexto, você vai criar uma plataforma de delivery de cerveja. 🍻
-
-Para facilitar o entendimento, podemos dividir a aplicação em ** 4 fluxos principais**, **uma validação de status entre cliente e pessoa vendedora** e **cobertura de testes (`front-end` e `back-end`)**:
-
-- **Fluxo Comum** que compreende: 
-  - (1) Tela de Login (`01login.test`); 
+  - (1) Tela de Login (`01login.test`);
   - (2) Tela de Registro (`02register.test`).
 
-- **Fluxo do Cliente** que compreende: : 
-  - (3) Tela de Produtos (`03customer_products.test`); 
-  - (4) Tela de Checkout (`04customer_checkout.test`); 
-  - (5) Tela de Pedidos (`05customer_orders.test`); 
+- **Fluxo do Cliente** que compreende: :
+
+  - (3) Tela de Produtos (`03customer_products.test`);
+  - (4) Tela de Checkout (`04customer_checkout.test`);
+  - (5) Tela de Pedidos (`05customer_orders.test`);
   - (6) Tela de Detalhes do Pedido (`06customer_order_details.test`).
 
-- **Fluxo da Pessoa Vendedora** que compreende: 
-  - (7) Tela de Pedidos (`07seller_orders.test`); 
+- **Fluxo da Pessoa Vendedora** que compreende:
+
+  - (7) Tela de Pedidos (`07seller_orders.test`);
   - (8) Tela de Detalhes/Controle do Pedido (`08seller_order_details.test`).
 
-- **Validação do Status do Pedido** que compreende: 
-  - (9) Teste de status sem atualização em tempo real (`09customer_seller_status_sync.test`); 
+- **Validação do Status do Pedido** que compreende:
+
+  - (9) Teste de status sem atualização em tempo real (`09customer_seller_status_sync.test`);
   - (10) Teste de status com atualização em tempo real (`10customer_seller_socket_status_sync.test`).
 
-- **Fluxo da Pessoa Administradora** que compreende: 
+- **Fluxo da Pessoa Administradora** que compreende:
+
   - (11) Tela de gerenciamento de usuários (`11admin_manage_users.test`).
 
-- **Testes da aplicação** que compreende: 
-  - (12) Testes de cobertura (`12coverage_tests.test`).
+- **Testes da aplicação** que compreende:
 
+  - (12) Testes de cobertura (`12coverage_tests.test`).
 
 - ⚠️ **IMPORTANTE** ⚠️: A tela de login deve ser capaz de direcionar para a tela principal de cada pessoa usuária, sendo as páginas:
   - Do cliente: `/customer/products`,
-  - Da pessoa vendedora:  `/seller/orders`,
+  - Da pessoa vendedora: `/seller/orders`,
   - Da pessoa administradora: `/admin/manage`
+
+### Obs
+
+- Estilização com CSS a implementar.
 
 ## Desenvolvimento
 
-- Para o banco de dados, utilizaremos a biblioteca ORM `Sequelize`, que fará interface com o `MySQL`!
-  - Utilize para referência de criação de `migrations` e `seeders` o arquivo `./db.example.sql`;
+- Para o banco de dados, utilizamos a biblioteca ORM `Sequelize`, que fará interface com o `MySQL`!
+
+  - Utilizemos para referência de criação de `migrations` e `seeders` o arquivo `./db.example.sql`;
   - O [Diagrama de ER](./assets/readme/eer.png) também pode ajudar a "visualizar" banco;
 
-- Utilize o o [protótipo](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=0%3A1) para se guiar na construção do front-end, ele **é comentado com os nomes de cada elemento** *(é necessário ter feito login no `figma` para visualizar)*;
+- Utilizemos [protótipo](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=0%3A1) para se guiar na construção do front-end, ele **é comentado com os nomes de cada elemento** _(é necessário ter feito login no `figma` para visualizar)_;
 
-- Para servir arquivos estáticos como imagens no back-end, utilize o seguinte path:`./back-end/public`;
-  - Nosso banco de imagens pode ser [baixado aqui](./assets/images.zip);
-
-**⚠️ Lembre-se de escrever testes unitários e sinta-se livre para alterar a UI. Contudo, respeite os atributos `data-testid`, pois eles serão usados na correção do projeto.**
-
-Você pode ler mais sobre os atributos `data-*` [neste link](https://developer.mozilla.org/pt-BR/docs/Learn/HTML/Howto/Use_data_attributes).
-
-**⚠️ Para ver os comentários sobre cada componente ⚠️:** Estando logado, basta clicar no ícone de comentários no Figma (lado esquerdo superior).
+- Para servir arquivos estáticos como imagens no back-end, utilizamos o seguinte path:`./back-end/public`;
+  - Nosso banco de imagens foi [baixado aqui](./assets/images.zip);
 
 ![image](https://res.cloudinary.com/drdpedroso/image/upload/c_scale,w_400/v1575815877/Screenshot_2019-12-08_at_11.37.25_kzt7rl.png)
 
-## Data de Entrega
-
-    - Projeto em grupo.
-
-    - Serão 10 dias de projeto.
-
-    - Data de entrega para avaliação final do projeto: `11/03/2022 14:00`.
-
 ---
 
-# Instruções para entregar seu projeto:
-
-## Antes de começar a desenvolver
+# Instruções para rodar o projeto na sua maquina:
 
 1. Clone o repositório
 
-- `git clone git@github.com:tryber/sd-013-c-project-delivery-app.git`.
+- `git clone git@github.com:Paulynho-lima/Delivery-App-Trybe-Fullstack.git`.
+
 - Entre na pasta do repositório que você acabou de clonar:
-  - `cd sd-013-c-project-delivery-app`
-- Vá para a branch do seu grupo, com `git checkout main-group-XX && git pull`, onde `XX` é o número do seu grupo. Exemplos: `main-group-1`, `main-group-22`.
+
+  - `cd Delivery-App-Trybe-Fullstack`
 
 2. Instale as dependências
 
 - Instale as dependências:
-  - `npm install`
 
-3. Faça alterações separadas por novas branchs criadas a partir da branch `main-group-XX`, criando uma nova branch para cada demanda
+- `npm install`
 
-- Verifique que você está na branch `main-group-XX`
-  - Exemplo: `git branch`
-- Se não estiver, mude para a branch `main-group-XX`
-  - Exemplo: `git checkout main-group-XX && git pull`
-- Agora, crie uma branch para a demanda que você vai desenvolver do seu projeto
-  - Você deve criar uma branch com uma breve descrição da demanda a ser desenvolvida
-  - Exemplo: `git checkout -b main-group-XX-cria-campo-de-input`
+3. Entre na pasta front-end:
 
-4. Adicione as mudanças ao _stage_ do Git e faça um `commit`
+- `cd front-end`
 
-- Verifique que as mudanças ainda não estão no _stage_
-  - Exemplo: `git status` (devem aparecer listadas as novas alterações em vermelho)
-- Adicione o novo arquivo ao _stage_ do Git
-  - Exemplo:
-    - `git add .` (adicionando todas as mudanças - _que estavam em vermelho_ - ao stage do Git)
-    - `git status` (deve aparecer listado o arquivo _joaozinho/README.md_ em verde)
-- Faça o `commit` inicial
-  - Exemplo:
-    - `git commit -m 'iniciando o projeto x'` (fazendo o primeiro commit)
-    - `git status` (deve aparecer uma mensagem tipo _nothing to commit_ )
+- Inicie o front-End
 
-5. Adicione a sua branch com o novo `commit` ao repositório remoto
+- `npm start`
 
-- Usando o exemplo anterior: `git push -u origin main-group-XX-cria-campo-de-input`
+---
 
-6. Crie um novo `Pull Request` _(PR)_
+4. Entre na pasta back-end:
 
-- Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-013-c-project-delivery-app/pulls)
-- Clique no botão verde _"New pull request"_
-- Clique na caixa de seleção _"Compare"_ e escolha a branch do grupo, `main-group-XX`, e a sua branch **com atenção**
-- Coloque um título para a sua _Pull Request_
-  - Exemplo: _"[GRUPO XX] Cria tela de busca"_
-- Clique no botão verde _"Create pull request"_
-- Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
-- **Não se preocupe em preencher mais nada por enquanto!**
-- Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-013-c-project-delivery-app/pulls) e confira que o seu _Pull Request_ está criado
+- `cd back-end`
 
-7. Assim que aprovado por pelo menos duas pessoas do seu grupo e o _Linter_ estiver adereçado, acesse **SEU** _Pull Request_ e clique no botão _"Merge pull request"_
+- Inicie o back-end
 
-## Durante o desenvolvimento
-
-:warning: **PULL REQUESTS COM ISSUES NO LINTER NÃO SERÃO AVALIADAS, ATENTE-SE PARA RESOLVÊ-LAS ANTES DE FINALIZAR O DESENVOLVIMENTO!** :warning:
-
-- Faça `commits` das alterações que você fizer no código regularmente
-
-- Lembre-se de sempre após um (ou alguns) `commits` atualizar o repositório remoto
-
-- Os comandos que você utilizará com mais frequência são:
-  1. `git status` _(para verificar o que está em vermelho - fora do stage - e o que está em verde - no stage)_
-  2. `git add` _(para adicionar arquivos ao stage do Git)_
-  3. `git commit` _(para criar um commit com os arquivos que estão no stage do Git)_
-  4. `git push -u origin nome-da-branch` _(para enviar o commit para o repositório remoto na primeira vez que fizer o `push` de uma nova branch)_
-  5. `git push` _(para enviar o commit para o repositório remoto após o passo anterior)_
+- `npm run dev`
 
 ---
 
 ## Scripts relevantes do `package.json` principal
 
-**São os scripts da raiz do projeto (`./package.json`)** *(e não das aplicações individuais `./front-end/package.json` e `./back-end/package.json`)*:
+**São os scripts da raiz do projeto (`./package.json`)** _(e não das aplicações individuais `./front-end/package.json` e `./back-end/package.json`)_:
 
 - `start`: Limpa as portas `3000` e `3001` e simula a inicialização no avaliador. Prepara o campo rodando o `Sequelize` para restaurar o **banco de dados de testes** (final `-test`) e sobe a aplicação com `pm2` em modo `fork` (Uma instância pra cada aplicação). Nesse modo as alterações não são assistidas;
-  - *uso (na raiz do projeto): `npm start`*
+
+  - _uso (na raiz do projeto): `npm start`_
 
 - `stop`: Para e deleta as aplicações rodando no `pm2`;
-  - *uso (na raiz do projeto): `npm stop`*
+
+  - _uso (na raiz do projeto): `npm stop`_
 
 - `dev`: Limpa as portas `3000` e `3001` e sobe a aplicação com `pm2` em modo `fork` (Uma instância pra cada aplicação), nesse modo, as atualizações são assistidas (modo `watch`);
-  - *uso (na raiz do projeto): `npm run dev`*
+
+  - _uso (na raiz do projeto): `npm run dev`_
 
 - `dev:prestart`: A partir da raiz, esse comando faz o processo de instalação de dependências (`npm i`) nos dois projetos (`./front-end` e `./back-end`) e roda o `Sequelize` no `./back-end` (lembrar de configurar o `.env` no mesmo);
-  - *uso (na raiz do projeto): `npm run dev:prestart`*
+
+  - _uso (na raiz do projeto): `npm run dev:prestart`_
 
 - `db:reset`: Rodas os scripts do `Sequelize` restaurando o **banco de dados de desenvolvimento** (final `-dev`), utilize caso ocorra algum problema no seu banco local;
-  - *uso (na raiz do projeto): `npm run db:reset`*
+
+  - _uso (na raiz do projeto): `npm run db:reset`_
 
 - `db:reset:debug`: Rodas os scripts do `Sequelize` restaurando o **banco de dados de desenvolvimento** (final `-dev`), utilize caso ocorra algum problema no seu banco local; Esse comando também é capaz de retornar informações detalhadas de erros (quando ocorrerem no processo);
-  - *uso (na raiz do projeto): `npm run db:reset:debug`*
+
+  - _uso (na raiz do projeto): `npm run db:reset:debug`_
 
 - `test <nomes-dos-arquivos>`: Roda todos os testes (ou uma parte deles caso `<nomes-dos-arquivos>` seja definido) utilizando o **banco de dados de testes** (final `-test`);
-  - *uso (na raiz do projeto): `npm test`, `npm test 01login 02register` ou ainda `npm run test 01 02`*
 
-- `test:dev <nomes-dos-arquivos>`: Roda todos os testes (ou uma parte deles caso `<nomes-dos-arquivos>` seja definido) utilizando o **banco de dados de desenvolvimento** (final `-dev`); 
-  - *uso (na raiz do projeto): `npm run test:dev`, `npm run test:dev 01login 02register` ou ainda `npm test:dev 01 02`*;
+  - _uso (na raiz do projeto): `npm test`, `npm test 01login 02register` ou ainda `npm run test 01 02`_
+
+- `test:dev <nomes-dos-arquivos>`: Roda todos os testes (ou uma parte deles caso `<nomes-dos-arquivos>` seja definido) utilizando o **banco de dados de desenvolvimento** (final `-dev`);
+
+  - _uso (na raiz do projeto): `npm run test:dev`, `npm run test:dev 01login 02register` ou ainda `npm test:dev 01 02`_;
 
 - `test:dev:open <nomes-dos-arquivos>`: Roda todos os testes (ou uma parte deles caso `<nomes-dos-arquivos>` seja definido) utilizando o **banco de dados de desenvolvimento** (final `-dev`), exemplo `npm test:dev:open 01login 02register` ou ainda `npm test:dev:open 01 02`; Esse teste deve mostrar abrir uma janela mostrando o comportamento das páginas;
-  - *uso (na raiz do projeto): `npm run test:dev:open`, `npm run test:dev:open 01login 02register` ou ainda `npm test:dev:open 01 02`*;
+
+  - _uso (na raiz do projeto): `npm run test:dev:open`, `npm run test:dev:open 01login 02register` ou ainda `npm test:dev:open 01 02`_;
 
 - `test:dev:report "<nomes-dos-arquivos>"`: Roda todos os testes (ou uma parte deles caso `"<nomes-dos-arquivos>"` seja definido) utilizando o **banco de dados de desenvolvimento** (final `-dev`); Esse teste devolve um output em texto com o resultado de todos os testes; Os `logs` são gerados em `./__tests__/reports`.
-  - *uso (na raiz do projeto): `npm run test:dev:report`, `npm run test:dev:report "01login 02register"` ou ainda `npm run test:dev:report "01 02"`*;
+  - _uso (na raiz do projeto): `npm run test:dev:report`, `npm run test:dev:report "01login 02register"` ou ainda `npm run test:dev:report "01 02"`_;
 
 ## Preparando o campo e iniciando o projeto
 
 - ⚠️ **IMPORTANTE** ⚠️: O processo de avaliação completo **é bem demorado** (em torno de 20 minutos), por isso, **é importante que os testes sejam feitos por partes, localmente, antes de serem enviados para o avaliador!** Para isso, utilize os comandos de teste local (`npm run test:dev*`) apresentados em ["Scripts relevantes do `package.json` principal"](#scripts-relevantes-do-packagejson-principal)!
-  - Exemplo: Após terminar os requisitos do primeiro arquivo (`01login.test.js`), vc pode utilizar o comando `npm run test:dev 01` ou `npm run test:dev:open 01`(caso queira visualizar) para testar aquela parte do projeto. 
+  - Exemplo: Após terminar os requisitos do primeiro arquivo (`01login.test.js`), vc pode utilizar o comando `npm run test:dev 01` ou `npm run test:dev:open 01`(caso queira visualizar) para testar aquela parte do projeto.
   - Aqui, vocês também tem liberdade para utilizar os comandos `.only` ou `.skip` para validar testes específicos no avaliador local (pasta `./__tests__/end-to-end`), exemplo:
+
 ```js script
 /*
   ⚠️ **IMPORTANTE** ⚠️: Esse artifício **não deve ser "commitado" com o projeto, sob risco de desqualificação na avaliação**, porém pode ser utilizado para ganhar tempo no teste local.
 */
 describe(requirement(1), () => {
-  test.only("O avaliador navegará para o endereço do host utilizando o endpoint '/'", async () => { // O `test.only` deve rodar o teste específico do requisito 1 e pular os demais
+  test.only("O avaliador navegará para o endereço do host utilizando o endpoint '/'", async () => {
+    // O `test.only` deve rodar o teste específico do requisito 1 e pular os demais
     // ...
   });
 });
@@ -356,54 +211,7 @@ describe(requirement(1), () => {
 
 ## Linter
 
-Usaremos o [ESLint](https://eslint.org/) para fazer a análise estática do seu código.
-
-Este projeto já vem com as dependências relacionadas ao _linter_ configuradas nos arquivos `package.json` nos seguintes caminhos:
-
-- `sd-013-c-project-delivery-app/back-end/package.json`
-- `sd-013-c-project-delivery-app/front-end/package.json`
-
-Para poder rodar os `ESLint` em um projeto basta executar o comando `npm install` dentro do projeto de forma individual, ou seja, precisa-se executar esse comando dentro da pasta `back-end` e também na pasta `front-end` e depois `npm run lint` dentro de cada uma dessas pastas, assim você verifica as particularidades individualmente. Se a análise do `ESLint` encontrar problemas no seu código, tais problemas serão mostrados no seu terminal. Se não houver problema no seu código, nada será impresso no seu terminal.
-
-Devido ao fato de as configurações das regras do `ESLint` dos projetos de front e back **serem diferentes**, **é preciso executar o `ESLint` em cada projeto**.
-
-Você pode também instalar o plugin do `ESLint` no `VSCode`, bastar ir em extensions e baixar o [plugin `ESLint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
-  - **Dica**: Abra separadamente cada pasta do projeto (`back-end` e `front-end` em `VSCode`s separados, para tirar proveito do `ESLint` individual de cada projeto).
-
-Usaremos também o [StyleLint](https://stylelint.io/) para fazer a análise estática do seu código.
-
-**O Stylelint é aplicável _APENAS_ no frontend**
-
-Para poder rodar o `StyleLint` em um projeto basta executar o comando `npm install` dentro do projeto de front-end e depois `npm run lint:styles`. Se a análise do `StyleLint` encontrar problemas no seu código, tais problemas serão mostrados no seu terminal. Se não houver problema no seu código, nada será impresso no seu terminal.
-
-Caso ainda fique alguma dúvida, você pode consultar nosso conteúdo sobre [`ESLint`](https://app.betrybe.com/course/real-life-engineer/eslint)
-
-⚠ **PULL REQUESTS COM ISSUES DE LINTER NÃO SERÃO AVALIADAS. ATENTE-SE PARA RESOLVÊ-LAS ANTES DE FINALIZAR O DESENVOLVIMENTO!** ⚠
-
-## Sequelize
-
-⚠️ **IMPORTANTE** ⚠️ : A configuração do sequelize pode ser considerado o **requisito zero** do projeto, dado que a maior parte dos testes depende da estrutura de alguma tabela para realização de testes, **por tanto, deve ser feita por primeiro**.
-
-⚠️ **IMPORTANTE** ⚠️ : Antes de iniciar o projeto, garanta que o Sequelize rode corretamente no `./back-end` (pela raiz do projeto, o comando `npm run db:reset` será de grande ajuda, pois serve para restaurar o banco de dados `-dev`). O avaliador irá executar funções do sequelize para garantir a estrutura do banco de dados.
-
-O projeto já provê uma estrutura inicializada do ORM (em `./back-end/src/database`); Aqui, é necessário que você desenvolva as **migrations** e **seeders** corretamente, seguindo o modelo em `./db.example.sql` (esse arquivo serve como referência, e não tem qualquer influência sobre a aplicação ou avaliação).
-
-⚠️ **IMPORTANTE** ⚠️ : O avaliador usará valores `default` no arquivo `./back-end/src/database/config/config.js` que já vem no projeto caso nada seja definido. Por tanto, tome cuidado na hora de fazer qualquer alteração nesse arquivo, pois é através dele que o avaliador utilizará as referências do banco de dados correto para cada situação (desenvolvimento e testes).
-
-Esse projeto fornece por padrão o arquivo `.sequelizerc` em `.back-end` para configurações do padrão de pastas no Sequelize.
-
-**Opcionalmente no desenvolvimento local**, você pode alterar o valor `EVAL_ALWAYS_RESTORE_DEV_DB` do arquivo `.env` em `./back-end` para `false`, o que persistirá os dados dos testes locais durante os mesmos.
-
-**Essa opção pode gerar implicações para a performance e confiabilidade do teste local**, já que o avaliador pode se comportar mal caso haja uma quantidade grande de registros para avaliar. Caso ocorra algum problema, utilize o comando `npm run db:reset` ou `npm run db:reset:debug` (para encontrar erros) pela raiz do projeto para restaurar o banco, ou altere de volta a opção `EVAL_ALWAYS_RESTORE_DEV_DB` para `true`.
-
-## Componentização
-
-O nosso [protótipo](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=977%3A391) possui um conjunto de **componentes base**. Isso é proposital e sugere que é fundamental que vocês componentizem o front-end de maneira que seja possível fazer o maior reaproveitamento possível de cada estrutura. 
-
-É bom lembrar que um front-end em React com pouca componentização **gera muita manutenção no tempo e atrasa a entrega**. *Aqui, é aconselhável pensar utilizando um [modelo atômico](https://brasil.uxdesign.cc/atomic-design-redesenhando-os-entreg%C3%A1veis-de-designers-e-desenvolvedores-da8886c7258d) de desenvolvimento.*
-
-## Data-testids
-O data-testid de cada elemento que será usado na avaliação do projeto está no arquivo [data-testids.md](data-testids.md) na raiz do projeto. Cada um desse elementos tem no [protótipo do figma](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=977%3A391) um número, e nesse arquivo, o `data-testid` que deve ser atribuido ao valor de tal. 
+Usamos o [ESLint](https://eslint.org/) para fazer a análise estática do seu código.
 
 # Requisitos do projeto
 
@@ -418,12 +226,13 @@ O Fluxo comum deve garantir que seja possível **fazer login** e **registrar** n
 ### `01login.test`
 
 Todos os testes desse arquivo:
+
 - Verificarão se o banco de dados contém as pessoas usuárias padrão (conforme referência em `db.example.sql`);
 - Farão a navegação para a página principal em `localhost:3000/login`.
 
 ---
 
-####  1 - Crie uma tela de login que deve ser acessível pelos endpoints / e /login no navegador
+#### 1 - Crie uma tela de login que deve ser acessível pelos endpoints / e /login no navegador
 
 **Observações técnicas**
 
@@ -438,7 +247,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  2 - Crie os elementos da tela de login com os data-testids disponíveis no protótipo
+#### 2 - Crie os elementos da tela de login com os data-testids disponíveis no protótipo
 
 **Observações técnicas**
 
@@ -450,7 +259,7 @@ O avaliador **buscará pelos elementos** fundamentais aos demais testes.
 
 ---
 
-####  3 - Desenvolva a tela de login de maneira que ela impossibilite o login com dados mal-formatados
+#### 3 - Desenvolva a tela de login de maneira que ela impossibilite o login com dados mal-formatados
 
 **Observações técnicas**
 
@@ -468,7 +277,7 @@ O avaliador **buscará pelos elementos** fundamentais aos demais testes.
 
 ---
 
-####  4 - Desenvolva a tela de login de maneira que ela impossibilite o login com dados válidos, porém inexistentes no banco de dados
+#### 4 - Desenvolva a tela de login de maneira que ela impossibilite o login com dados válidos, porém inexistentes no banco de dados
 
 **Observações técnicas**
 
@@ -484,11 +293,12 @@ O avaliador **buscará pelos elementos** fundamentais aos demais testes.
 
 ---
 
-####  5 - Desenvolva a tela de login de maneira que ela possibilite fazer o login com dados válidos e existentes no banco de dados
+#### 5 - Desenvolva a tela de login de maneira que ela possibilite fazer o login com dados válidos e existentes no banco de dados
 
 **Observações técnicas**
 
 Sua página deve ser capaz de utilizar os dados do cliente previstos em `db.example.sql`:
+
 - Note que, a senha armazenada no banco é uma (`hash md5`)[https://pt.wikipedia.org/wiki/MD5], cuja tradução também está comentada no arquivo;
 - Sua API deve ser capaz de traduzir uma senha comum para uma `hash md5`, comparando-a e validando-a com a do banco de dados;
 - É possível utilizar bibliotecas de terceiros como a (`md5`)[https://www.npmjs.com/package/md5], ou a nativa [`crypto`](https://nodejs.org/api/crypto.html#crypto_crypto_createhash_algorithm_options) para conversão de valores para `md5`.
@@ -503,12 +313,13 @@ Sua página deve ser capaz de utilizar os dados do cliente previstos em `db.exam
 ### `02register.test`
 
 Todos os testes desse arquivo:
+
 - Farão a navegação para a página principal em `localhost:3000/login`;
 - Farão a navegação para a página de registro através do `Botão de registro`;
 
 ---
 
-####  6 - Crie uma tela de registro que deve ser acessível via endpoint /register no navegador e pelo botão de registro na tela de login
+#### 6 - Crie uma tela de registro que deve ser acessível via endpoint /register no navegador e pelo botão de registro na tela de login
 
 **Observações técnicas**
 
@@ -522,7 +333,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  7 - Crie os elementos da tela de registro com os data-testids disponíveis no protótipo
+#### 7 - Crie os elementos da tela de registro com os data-testids disponíveis no protótipo
 
 **Observações técnicas**
 
@@ -534,7 +345,7 @@ O avaliador **buscará pelos elementos** fundamentais aos demais testes.
 
 ---
 
-####  8 - Desenvolva a tela de registro de maneira que ela impossibilite o cadastro com dados mal-formatados
+#### 8 - Desenvolva a tela de registro de maneira que ela impossibilite o cadastro com dados mal-formatados
 
 **Observações técnicas**
 
@@ -553,11 +364,12 @@ O avaliador **buscará pelos elementos** fundamentais aos demais testes.
 
 ---
 
-####  9 - Desenvolva a tela de registro de maneira que ela possibilite cadastrar com dados válidos
+#### 9 - Desenvolva a tela de registro de maneira que ela possibilite cadastrar com dados válidos
 
 **Observações técnicas**
 
 Sua página deve ser capaz de cadastrar pessoas usuárias com dados válidos:
+
 - Note que, a senha deve ser armazenada no banco como uma (`hash md5`)[https://pt.wikipedia.org/wiki/MD5], a tradução **deve ocorrer na API**;
 - É possível utilizar bibliotecas de terceiros como a (`md5`)[https://www.npmjs.com/package/md5], ou a nativa [`crypto`](https://nodejs.org/api/crypto.html#crypto_crypto_createhash_algorithm_options) para conversão de valores para `md5`.
 
@@ -570,7 +382,7 @@ Sua página deve ser capaz de cadastrar pessoas usuárias com dados válidos:
 
 ---
 
-####  10 - Desenvolva a tela de registro de maneira que ela impossibilite o cadastro de um usuário já existente
+#### 10 - Desenvolva a tela de registro de maneira que ela impossibilite o cadastro de um usuário já existente
 
 **Observações técnicas**
 
@@ -595,13 +407,14 @@ O fluxo do cliente deve garantir que seja possível **navegar e escolher produto
 ### `03customer_products.test`
 
 Todos os testes desse arquivo:
+
 - Farão o fluxo de login com o cliente "Zé Birita" (o login é sempre validado nos testes);
 - Esse fluxo deve dar acesso a uma página padrão de produtos em `localhost:3000/customer/products`;
 - Verificarão no banco de dados, se consta a lista de produtos padrão, conforme a tabela `products` do modelo em `db.example.sql`.
 
 ---
 
-####  11 - Crie uma tela de produtos do cliente contendo uma barra de navegação - navbar - que servirá também para demais telas das pessoas usuárias
+#### 11 - Crie uma tela de produtos do cliente contendo uma barra de navegação - navbar - que servirá também para demais telas das pessoas usuárias
 
 **Observações técnicas**
 
@@ -610,6 +423,7 @@ Todos os testes desse arquivo:
 **O que será avaliado**
 
 O avaliador **buscará pelos elementos** fundamentais aos demais testes:
+
 - Elemento genérico que seja um item de menu para página de produtos;
 - Elemento genérico que seja um item de menu para página de pedidos;
 - Elemento genérico para o nome da pessoa usuária;
@@ -617,18 +431,19 @@ O avaliador **buscará pelos elementos** fundamentais aos demais testes:
 
 ---
 
-####  12 - Desenvolva a tela de produtos do cliente criando os demais elementos com os data-testids disponíveis no protótipo
+#### 12 - Desenvolva a tela de produtos do cliente criando os demais elementos com os data-testids disponíveis no protótipo
 
 **Observações técnicas**
 
 - Se oriente pela seguinte tela do protótipo: [`Comum / Produtos`](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=977%3A416);
 - Deve-se construir um total de `11` cards, cada um correspondente a um item da tabela produtos, conforme a tabela `products` do modelo em `db.example.sql`.
-- Os `data-testid` desses itens devem terminar com o id de cada produto, exemplo: 
+- Os `data-testid` desses itens devem terminar com o id de cada produto, exemplo:
   - `customer_products__element-card-price-1`; `customer_products__element-card-price-2`; ...; `customer_products__element-card-price-11`.
 
 **O que será avaliado**
 
 O avaliador **buscará pelos elementos** relacionados a **todos os cards de produtos**:
+
 - Elemento genérico do nome/título do produto;
 - Elemento genérico do preço do produto;
 - Imagem do produto;
@@ -638,7 +453,7 @@ O avaliador **buscará pelos elementos** relacionados a **todos os cards de prod
 
 ---
 
-####  13 - Desenvolva a tela de produtos do cliente de forma que ela pressuponha dados válidos da pessoa usuária armazenados no localStorage
+#### 13 - Desenvolva a tela de produtos do cliente de forma que ela pressuponha dados válidos da pessoa usuária armazenados no localStorage
 
 **Observações técnicas**
 
@@ -652,10 +467,10 @@ O avaliador **buscará pelos elementos** relacionados a **todos os cards de prod
   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTm9tZSBEYSBQZXNzb2EgVXN1w6FyaWEiLCJlbWFpbCI6ImVtYWlsQGRvbWluaW8uY29tIiwicm9sZSI6ImN1c3RvbWVyIn0.s5cmiyY16yViCXkHuzWekxkMeYBi75eT8uJnSbfadNE"
 }
 ```
+
 - Sua página também **deve ser capaz de deslogar a pessoa usuária** que não possuir um `token` válido no `localStorage`;
   - Note que aqui, é necessário que sua API seja capaz **de gerar um `token`** [`JWT`](https://jwt.io/), com base na chave em `./back-end/jwt.evaluation.key` após um login válido.
 - Aqui, também será validado se esses dados são descartados ao logout.
-
 
 **O que será avaliado**
 
@@ -666,7 +481,7 @@ O avaliador **buscará pelos elementos** relacionados a **todos os cards de prod
 
 ---
 
-####  14 - Desenvolva a tela de produtos do cliente de forma que os cards de todos os produtos pré-cadastrados contenham os valores corretos
+#### 14 - Desenvolva a tela de produtos do cliente de forma que os cards de todos os produtos pré-cadastrados contenham os valores corretos
 
 **Observações técnicas**
 
@@ -681,7 +496,7 @@ O avaliador **buscará pelos elementos** relacionados a **todos os cards de prod
 
 ---
 
-####  15 - Desenvolva a tela de produtos do cliente de forma que o preço total esteja correto após a adição de itens aleatórios
+#### 15 - Desenvolva a tela de produtos do cliente de forma que o preço total esteja correto após a adição de itens aleatórios
 
 **Observações técnicas**
 
@@ -705,7 +520,7 @@ O avaliador **buscará pelos elementos** relacionados a **todos os cards de prod
 
 ---
 
-####  16 - Desenvolva a tela de produtos do cliente de forma que haja um botão de carrinho que redirecionará para a tela de checkout caso itens sejam adicionados
+#### 16 - Desenvolva a tela de produtos do cliente de forma que haja um botão de carrinho que redirecionará para a tela de checkout caso itens sejam adicionados
 
 **Observações técnicas**
 
@@ -723,6 +538,7 @@ O avaliador **buscará pelos elementos** relacionados a **todos os cards de prod
 ### `04customer_checkout.test`
 
 Todos os testes desse arquivo:
+
 - Vão utilizar uma amostragem de produtos do banco de dados (impresso na tela durante o teste);
 - Vão gerar um novo pedido com o preço total presumido e dados aleatórios para utilização nos testes (impresso na tela durante o teste);
 - Vão fazer login com o cliente "Zé Birita";
@@ -732,7 +548,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  17 - Crie uma tela de checkout do cliente com elementos com os data-testids disponíveis no protótipo
+#### 17 - Crie uma tela de checkout do cliente com elementos com os data-testids disponíveis no protótipo
 
 **Observações técnicas**
 
@@ -744,10 +560,10 @@ Todos os testes desse arquivo:
 **O que será avaliado**
 
 - O avaliador testará os data-testids referentes aos itens do carrinho e demais elementos.
-  
+
 ---
 
-####  18 - Desenvolva a tela de checkout do cliente de forma a possuir os dados corretos do carrinho e preço total
+#### 18 - Desenvolva a tela de checkout do cliente de forma a possuir os dados corretos do carrinho e preço total
 
 **Observações técnicas**
 
@@ -759,7 +575,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  19 - Desenvolva a tela de checkout do cliente de forma que seja possível remover itens do carrinho
+#### 19 - Desenvolva a tela de checkout do cliente de forma que seja possível remover itens do carrinho
 
 **Observações técnicas**
 
@@ -772,11 +588,11 @@ Todos os testes desse arquivo:
 
 ---
 
-####  20 - Desenvolva a tela de checkout do cliente de forma a nos redirecionar para a tela de detalhes do pedido feito após a finalização do mesmo
+#### 20 - Desenvolva a tela de checkout do cliente de forma a nos redirecionar para a tela de detalhes do pedido feito após a finalização do mesmo
 
 **Observações técnicas**
 
-- Não se preocupe aqui em ter a tela de detalhes do pedido pronta; 
+- Não se preocupe aqui em ter a tela de detalhes do pedido pronta;
   - O que deve estar garantido, é que é possível ter acesso a uma rota `localhost:3000/customer/orders/<id>` no front, onde o `id` é retornado da requisição da venda;
 - Ao final do pedido (ao clicar no 'Botão de finalização do pedido'), a tela de checkout deve disparar uma requisição pra API, inserindo a venda e retornando o `id` da mesma, para utilização no redirecionamento.
 
@@ -787,16 +603,16 @@ Todos os testes desse arquivo:
 
 ---
 
-####  21 - Desenvolva a tela de checkout do cliente de forma a gerar uma nova venda na tabela sales, assim como relações em salesProducts ao finalizar o pedido
+#### 21 - Desenvolva a tela de checkout do cliente de forma a gerar uma nova venda na tabela sales, assim como relações em salesProducts ao finalizar o pedido
 
 **Observações técnicas**
 
 - O "status" padrão de cada pedido deve ser `Pendente`;
-  - *Para ficar no radar:* Os status de um pedido podem ser:
-      - `Pendente`;
-      - `Preparando`;
-      - `Em Trânsito`;
-      - `Entregue`.
+  - _Para ficar no radar:_ Os status de um pedido podem ser:
+    - `Pendente`;
+    - `Preparando`;
+    - `Em Trânsito`;
+    - `Entregue`.
 - Deve-se garantir que a requisição para API se encarregue de criar uma venda, e na mesma requisição, relacionar essa venda com os produtos do carrinho:
   - Aqui possuímos uma relação de `N:N` (Muitos para muitos) onde se relacionam as tabelas: `sales` < 1:N > `salesProducts` < N:1 > `products`.
 - Os testes farão a inserção da venda via checkout e após isso farão a validação desses dados no banco de dados.
@@ -817,12 +633,13 @@ Todos os testes desse arquivo:
 ### `05customer_orders.test`
 
 Todos os testes desse arquivo:
+
 - Vão utilizar uma amostragem de produtos do banco de dados (impresso na tela durante o teste);
 - Vão fazer login com o cliente "Zé Birita";
 - Vão gerar um novo pedido com o preço total presumido e dados aleatórios para utilização nos testes (impresso na tela durante o teste);
 - Vão fazer o checkout desse novo pedido;
 - Vão acessar a `HomePage` do usuário, navegando para a tela de login (que deve fazer o redirecionamento);
-  - *Lembrando que, acessar a tela de login com um usuário já logado, deve fazer o direcionamento para página padrão do mesmo.*
+  - _Lembrando que, acessar a tela de login com um usuário já logado, deve fazer o direcionamento para página padrão do mesmo._
 - Vão navegar para a tela de produtos através do menu de navegação (saindo da tela de detalhes do pedido);
 - Vão navegar para a tela de pedidos do cliente através do menu de navegação;
 - Vão coletar os dados de vendas da tabela `sales` referentes ao usuário (id `3`)
@@ -830,12 +647,12 @@ Todos os testes desse arquivo:
 
 ---
 
-####  22 - Crie uma tela de pedidos do cliente com elementos a partir dos data-testids disponíveis no protótipo
+#### 22 - Crie uma tela de pedidos do cliente com elementos a partir dos data-testids disponíveis no protótipo
 
 **Observações técnicas**
 
 - Se oriente pela seguinte tela do protótipo: [`Comum / Meus Pedidos`](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=977%3A637);
-- Os `data-testid` desses itens devem terminar com o `id` de cada venda no banco, exemplo: 
+- Os `data-testid` desses itens devem terminar com o `id` de cada venda no banco, exemplo:
   - `customer_products__element-order-date-1`; `customer_products__element-order-date-2`; ...; `customer_products__element-order-date-x`.
 
 **O que será avaliado**
@@ -845,7 +662,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  23 - Desenvolva a tela de pedidos do cliente de forma a conter a lista de pedidos do mesmo com os dados corretos
+#### 23 - Desenvolva a tela de pedidos do cliente de forma a conter a lista de pedidos do mesmo com os dados corretos
 
 **Observações técnicas**
 
@@ -858,11 +675,11 @@ Todos os testes desse arquivo:
 
 ---
 
-####  24 - Desenvolva a tela de pedidos do cliente de forma a dar acesso à tela de detalhes de um pedido ao clicar no card do mesmo
+#### 24 - Desenvolva a tela de pedidos do cliente de forma a dar acesso à tela de detalhes de um pedido ao clicar no card do mesmo
 
 **Observações técnicas**
 
-- Não se preocupe aqui em ter a tela de detalhes do pedido pronta; 
+- Não se preocupe aqui em ter a tela de detalhes do pedido pronta;
   - O que deve estar garantido, é que é possível ter acesso a uma rota `localhost:3000/customer/orders/<id>` no front;
 - Aqui, o acesso a cada item deve ser possível pelos cards na tela de pedidos;
 
@@ -876,6 +693,7 @@ Todos os testes desse arquivo:
 ### `06customer_order_details.test`
 
 Todos os testes desse arquivo:
+
 - Vão utilizar uma amostragem de produtos do banco de dados (impresso na tela durante o teste);
 - Vão fazer login com o cliente "Zé Birita";
 - Vão gerar um novo pedido com o preço total presumido e dados aleatórios para utilização nos testes (impresso na tela durante o teste);
@@ -884,7 +702,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  25 - Crie uma tela de detalhes do pedido do cliente com elementos a partir dos data-testids disponíveis no protótipo
+#### 25 - Crie uma tela de detalhes do pedido do cliente com elementos a partir dos data-testids disponíveis no protótipo
 
 **Observações técnicas**
 
@@ -896,7 +714,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  26 - Desenvolva a tela de detalhes do pedido do cliente de forma a possuir os dados corretos da venda
+#### 26 - Desenvolva a tela de detalhes do pedido do cliente de forma a possuir os dados corretos da venda
 
 **Observações técnicas**
 
@@ -917,6 +735,7 @@ O fluxo da pessoa vendedora deve garantir que é possível listar **pedidos rela
 ### `07seller_orders.test`
 
 Todos os testes desse arquivo:
+
 - Vão utilizar uma amostragem de produtos do banco de dados (impresso na tela durante o teste);
 - Vão fazer login com o cliente "Zé Birita";
 - Vão gerar um novo pedido com o preço total presumido e dados aleatórios para utilização nos testes (impresso na tela durante o teste);
@@ -928,12 +747,12 @@ Todos os testes desse arquivo:
 
 ---
 
-####  27 - Crie uma tela de pedidos da pessoa vendedora com elementos a partir dos data-testids disponíveis no protótipo
+#### 27 - Crie uma tela de pedidos da pessoa vendedora com elementos a partir dos data-testids disponíveis no protótipo
 
 **Observações técnicas**
 
 - Se oriente pela seguinte tela do protótipo: [`P. Vend / Pedidos`](https://www.figma.com/file/cNKu41RhnPIgNqrbMTzmUI/Delivery-App-new-trybeer?node-id=982%3A372);
-- Os `data-testid` desses itens devem terminar com o `id` de cada venda no banco, exemplo: 
+- Os `data-testid` desses itens devem terminar com o `id` de cada venda no banco, exemplo:
   - `seller_orders__element-order-date-1`; `seller_orders__element-order-date-2`; ...; `seller_orders__element-order-date-x`.
 
 **O que será avaliado**
@@ -943,7 +762,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  28 - Desenvolva a tela de pedidos da pessoa vendedora de forma a conter a lista de pedidos do mesmo com os dados corretos
+#### 28 - Desenvolva a tela de pedidos da pessoa vendedora de forma a conter a lista de pedidos do mesmo com os dados corretos
 
 **Observações técnicas**
 
@@ -956,11 +775,11 @@ Todos os testes desse arquivo:
 
 ---
 
-####  29 - Desenvolva a tela de pedidos da pessoa vendedora de forma a dar acesso à tela de detalhes de um pedido ao clicar no card do mesmo
+#### 29 - Desenvolva a tela de pedidos da pessoa vendedora de forma a dar acesso à tela de detalhes de um pedido ao clicar no card do mesmo
 
 **Observações técnicas**
 
-- Não se preocupe aqui em ter a tela de detalhes do pedido pronta; 
+- Não se preocupe aqui em ter a tela de detalhes do pedido pronta;
   - O que deve estar garantido, é que é possível ter acesso a uma rota `localhost:3000/seller/orders/<id>` no front;
 - Aqui, o acesso a cada item deve ser possível pelos cards na tela de pedidos;
 
@@ -970,9 +789,11 @@ Todos os testes desse arquivo:
   - Se o pedido gerado for o de `id` `5`, o avaliador espera acessar via aquele card, o endereço `localhost:3000/seller/orders/5`.
 
 ---
+
 ### `08seller_order_details.test`
 
 Todos os testes desse arquivo:
+
 - Vão utilizar uma amostragem de produtos do banco de dados (impresso na tela durante o teste);
 - Vão fazer login com o cliente "Zé Birita";
 - Vão gerar um novo pedido com o preço total presumido e dados aleatórios para utilização nos testes (impresso na tela durante o teste);
@@ -983,7 +804,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  30 - Crie uma tela de detalhes do pedido da pessoa vendedora com elementos a partir dos data-testids disponíveis no protótipo
+#### 30 - Crie uma tela de detalhes do pedido da pessoa vendedora com elementos a partir dos data-testids disponíveis no protótipo
 
 **Observações técnicas**
 
@@ -995,7 +816,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  31 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a possuir os dados corretos da venda
+#### 31 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a possuir os dados corretos da venda
 
 **Observações técnicas**
 
@@ -1013,7 +834,7 @@ A validação de status consiste em uma série de testes que **devem assegurar q
 
 ---
 
-####  32 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a ser capaz de alterar o status do pedido
+#### 32 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a ser capaz de alterar o status do pedido
 
 **Observações técnicas**
 
@@ -1037,6 +858,7 @@ A validação de status consiste em uma série de testes que **devem assegurar q
 ### `09customer_seller_status_sync.test`
 
 Todos os testes desse arquivo:
+
 - Vão utilizar uma amostragem de produtos do banco de dados (impresso na tela durante o teste);
 - Vão fazer login com o cliente "Zé Birita";
 - Vão gerar um novo pedido com o preço total presumido e dados aleatórios para utilização nos testes (impresso na tela durante o teste);
@@ -1047,7 +869,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  33 - Garanta que o status do pedido atualizado na tela de detalhes do pedido da pessoa vendedora seja refletido na tela de detalhes do pedido do cliente após atualização das páginas
+#### 33 - Garanta que o status do pedido atualizado na tela de detalhes do pedido da pessoa vendedora seja refletido na tela de detalhes do pedido do cliente após atualização das páginas
 
 **Observações técnicas**
 
@@ -1062,7 +884,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  34 - Garanta que o status do pedido atualizado na tela de detalhes do pedido da pessoa vendedora seja refletido na tela de lista de pedidos do cliente após atualização das páginas
+#### 34 - Garanta que o status do pedido atualizado na tela de detalhes do pedido da pessoa vendedora seja refletido na tela de lista de pedidos do cliente após atualização das páginas
 
 **Observações técnicas**
 
@@ -1077,7 +899,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  35 - Garanta que o status do pedido atualizado na tela de detalhes do pedido do cliente seja refletido na tela de lista de pedidos da pessoa vendedora após atualização das páginas
+#### 35 - Garanta que o status do pedido atualizado na tela de detalhes do pedido do cliente seja refletido na tela de lista de pedidos da pessoa vendedora após atualização das páginas
 
 **Observações técnicas**
 
@@ -1100,15 +922,17 @@ Todos os testes desse arquivo:
 ### `10customer_seller_socket_status_sync.test`
 
 Esse teste é similar ao anterior, porém assumindo a implementação do `socket.io` no escopo das páginas:
+
 - Pedidos do cliente;
 - Detalhes do pedido do cliente;
 - Pedidos da pessoa vendedora;
 - Detalhes do pedido da pessoa vendedora;
-⚠️ **IMPORTANTE** ⚠️: Esse escopo deve ser respeitado para que isso não quebre demais testes ou interfira em páginas que não utilizam esse recurso.
-  - Dica: Utilize um **contexto específico** para inicialização do socket, cujo provedor contemple somente esse conjunto de páginas; 
+  ⚠️ **IMPORTANTE** ⚠️: Esse escopo deve ser respeitado para que isso não quebre demais testes ou interfira em páginas que não utilizam esse recurso.
+  - Dica: Utilize um **contexto específico** para inicialização do socket, cujo provedor contemple somente esse conjunto de páginas;
   - Esse contexto pode ter funções específicas para inicialização de `listeners`, emissão e recepção de eventos, e pode ser utilizado sob demanda por suas páginas.
 
 Todos os testes desse arquivo:
+
 - Vão utilizar uma amostragem de produtos do banco de dados (impresso na tela durante o teste);
 - Vão fazer login com o cliente "Zé Birita";
 - Vão gerar um novo pedido com o preço total presumido e dados aleatórios para utilização nos testes (impresso na tela durante o teste);
@@ -1119,7 +943,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  36 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a interagir em tempo real com a tela de detalhes do pedido do cliente
+#### 36 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a interagir em tempo real com a tela de detalhes do pedido do cliente
 
 **Observações técnicas**
 
@@ -1134,7 +958,7 @@ Todos os testes desse arquivo:
 
 ---
 
-####  37 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a interagir em tempo real com a tela de lista de pedidos do cliente
+#### 37 - Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a interagir em tempo real com a tela de lista de pedidos do cliente
 
 **Observações técnicas**
 
@@ -1147,9 +971,9 @@ Todos os testes desse arquivo:
 
 - O avaliador verificará se, ao alterar o status do pedido na tela da pessoa vendedora, o mesmo também é alterado na tela de pedidos do cliente após atualização das páginas.
 
-----
+---
 
-####  38 - Desenvolva a tela de detalhes do pedido do cliente de forma a interagir em tempo real com a tela de lista de pedidos da pessoa vendedora
+#### 38 - Desenvolva a tela de detalhes do pedido do cliente de forma a interagir em tempo real com a tela de lista de pedidos da pessoa vendedora
 
 **Observações técnicas**
 
@@ -1178,13 +1002,14 @@ O fluxo da pessoa administradora deve possibilitar **o cadastro de clientes e pe
 ### `11admin_manage_users.test`
 
 Todos os testes desse arquivo devem:
+
 - Fazer login utilizando dados da pessoa administradora;
   - email `adm@deliveryapp.com` e senha `--adm2@21!!--`.
 - Ter a seguinte página esperada pelo avaliador: `localhost:3000/admin/manage`.
 
 ---
 
-####  39 - Crie uma tela de pessoa administradora com elementos a partir dos data-testids disponíveis no protótipo
+#### 39 - Crie uma tela de pessoa administradora com elementos a partir dos data-testids disponíveis no protótipo
 
 **Observações técnicas**
 
@@ -1197,7 +1022,7 @@ Todos os testes desse arquivo devem:
 
 ---
 
-####  40 - Desenvolva a tela da pessoa administradora de forma a validar o formulário de cadastro
+#### 40 - Desenvolva a tela da pessoa administradora de forma a validar o formulário de cadastro
 
 **Observações técnicas**
 
@@ -1218,15 +1043,17 @@ Todos os testes desse arquivo devem:
 
 ---
 
-####  41 - Desenvolva a tela da pessoa administradora de forma que seja possível cadastrar pessoas usuárias válidas
+#### 41 - Desenvolva a tela da pessoa administradora de forma que seja possível cadastrar pessoas usuárias válidas
 
 **Observações técnicas**
 
 Sua página deve ser capaz de cadastrar pessoas usuárias com dados válidos:
+
 - Note que, a senha deve ser armazenada no banco como uma (`hash md5`)[https://pt.wikipedia.org/wiki/MD5], a tradução **deve ocorrer na API**;
 - É possível utilizar bibliotecas de terceiros como a (`md5`)[https://www.npmjs.com/package/md5], ou a nativa [`crypto`](https://nodejs.org/api/crypto.html#crypto_crypto_createhash_algorithm_options) para conversão de valores para `md5`;
 
 Aqui a rota de cadastro **deve ser diferente da rota de cadastro comum**, pois também é possível definir a categoria de usuário aqui (`role`);
+
 - Essa é uma rota **específica para pessoa administradora**, portanto a mesma rota na api deve considerar um **token** válido e referênte ao usuário de categoria `administrator`;
 
 **O que será avaliado**
@@ -1237,7 +1064,7 @@ Aqui a rota de cadastro **deve ser diferente da rota de cadastro comum**, pois t
 
 ---
 
-####  42 - Desenvolva a tela da pessoa administradora de forma que ela impossibilite o cadastro de pessoas usuárias já existentes
+#### 42 - Desenvolva a tela da pessoa administradora de forma que ela impossibilite o cadastro de pessoas usuárias já existentes
 
 **Observações técnicas**
 
@@ -1253,7 +1080,7 @@ Sua página deve **impedir o cadastro de pessoas com o mesmo Nome ou E-mail**.
 
 ---
 
-####  43 - (`Bônus`) Desenvolva a tela da pessoa administradora de forma que haja uma tabela de pessoas usuárias cadastradas
+#### 43 - (`Bônus`) Desenvolva a tela da pessoa administradora de forma que haja uma tabela de pessoas usuárias cadastradas
 
 **Observações técnicas**
 
@@ -1268,7 +1095,7 @@ Sua página deve **impedir o cadastro de pessoas com o mesmo Nome ou E-mail**.
 
 ---
 
-####  44 - (`Bônus`) Desenvolva a tela da pessoa administradora de forma que seja possível deletar pessoas usuárias na tabela
+#### 44 - (`Bônus`) Desenvolva a tela da pessoa administradora de forma que seja possível deletar pessoas usuárias na tabela
 
 **Observações técnicas**
 
@@ -1291,9 +1118,10 @@ A cobertura de testes deve garantir que, tanto no `front-end` quanto no `back-en
 ### `12coverage_tests.test`
 
 Antes de todos os testes, esse arquivo deve rodar, em ambas aplicações, o comando `test:coverage:json`.
+
 - Tanto no `front-end` quanto no `back-end`, esse comando deve gerar um arquivo de cobertura (`coverage`) específico para cada;
-- Serão coletados dos arquivos, os dados: 
-  - `pct` - porcentagem total da cobertura; 
+- Serão coletados dos arquivos, os dados:
+  - `pct` - porcentagem total da cobertura;
   - `skipped` - se algum teste foi pulado com `.only` ou `.skip`;
   - `covered` - quantas linhas foram cobertas no teste.
 
@@ -1301,11 +1129,12 @@ Antes de todos os testes, esse arquivo deve rodar, em ambas aplicações, o coma
 
 ⚠️ **IMPORTANTE** ⚠️: O avaliador também retornará erro e não fará a avaliação do requisito, caso os testes estejam dando **erros de promessas que não são tratadas** (`UnhandledPromiseRejectionWarning`), por isso, busquem sempre fazer o **tratamento correto de funções assíncronas durante o projeto, tal como nos testes.**
 
-####  45 - Crie testes que cubram no mínimo 30 por cento dos arquivos do front-end e back-end em src com um mínimo de 75 linhas cobertas em cada
+#### 45 - Crie testes que cubram no mínimo 30 por cento dos arquivos do front-end e back-end em src com um mínimo de 75 linhas cobertas em cada
 
 **Observações técnicas**
 
 Garanta que tanto o seu `front-end` quanto `back-end` possuem testes que cubram ao menos `30%` da aplicação com `75` linhas cobertas:
+
 - É possível testar a cobertura de duas formas:
   - A partir da raiz de cada projeto, utilizando `npm run test:coverage` (o que deve trazer uma tabela de cobertura, sem o número absoluto de linhas cobertas);
   - A partir da raiz de cada projeto, utilizando `npm run test:coverage:json` (o que deve trazer um arquivo `./coverage/coverage.json`, com um detalhamento da cobertura);
@@ -1316,11 +1145,12 @@ Garanta que tanto o seu `front-end` quanto `back-end` possuem testes que cubram 
 
 ---
 
-####  46 - (`Bônus`) Crie testes que cubram no mínimo 60 por cento dos arquivos do front-end e back-end em src com um mínimo de 150 linhas cobertas em cada
+#### 46 - (`Bônus`) Crie testes que cubram no mínimo 60 por cento dos arquivos do front-end e back-end em src com um mínimo de 150 linhas cobertas em cada
 
 **Observações técnicas**
 
 Garanta que tanto o seu `front-end` quanto `back-end` possuem testes que cubram ao menos `60%` da aplicação com `150` linhas cobertas:
+
 - É possível testar a cobertura de duas formas:
   - A partir da raiz de cada projeto, utilizando `npm run test:coverage` (o que deve trazer uma tabela de cobertura, sem o número absoluto de linhas cobertas);
   - A partir da raiz de cada projeto, utilizando `npm run test:coverage:json` (o que deve trazer um arquivo `./coverage/coverage.json`, com um detalhamento da cobertura);
@@ -1331,11 +1161,12 @@ Garanta que tanto o seu `front-end` quanto `back-end` possuem testes que cubram 
 
 ---
 
-####  47 - (`Bônus`) Crie testes que cubram no mínimo 90 por cento dos arquivos do front-end e back-end em src com um mínimo de 225 linhas cobertas em cada
+#### 47 - (`Bônus`) Crie testes que cubram no mínimo 90 por cento dos arquivos do front-end e back-end em src com um mínimo de 225 linhas cobertas em cada
 
 **Observações técnicas**
 
 Garanta que tanto o seu `front-end` quanto `back-end` possuem testes que cubram ao menos `90%` da aplicação com `225` linhas cobertas:
+
 - É possível testar a cobertura de duas formas:
   - A partir da raiz de cada projeto, utilizando `npm run test:coverage` (o que deve trazer uma tabela de cobertura, sem o número absoluto de linhas cobertas);
   - A partir da raiz de cada projeto, utilizando `npm run test:coverage:json` (o que deve trazer um arquivo `./coverage/coverage.json`, com um detalhamento da cobertura);
@@ -1345,61 +1176,3 @@ Garanta que tanto o seu `front-end` quanto `back-end` possuem testes que cubram 
 - Serão validados os dados de cobertura no `front-end` e no `back-end`;
 
 ---
-
-## `Extra não avaliativo`
-
-### Realizar o deploy do projeto back-end e front-end
-
-**Terminei meu projeto, e agora?** Uma prática legal, caso queira apresentar ou publicar seu projeto, é dar `deploy` na sua aplicação.
-
-Um bom exercício aqui é utilizar seu aprendizado de [`Heroku`](https://app.betrybe.com/course/back-end/deployment/infraestrutura-deploy-com-heroku/30597149-145b-49a1-924c-bd8050a8f249) para subir as duas aplicações, garantindo a comunicação de uma com a outra.
-
-Um ponto importante aqui, é que também é necessário subir um banco de dados no Heroku para levar seus dados para a nuvem. O Heroku conta com o [`ClearDB`](https://devcenter.heroku.com/articles/cleardb) *(Artigo em inglês)*, para te ajudar nessa tarefa!
-
----
-
-### Qual poderia ser o próximo passo?
-
-Se seu projeto estiver concluído, considere a expansão que ele pode passar ao longo do tempo. Esse projeto consegue expandir suas entidades? Consegue ter outros módulos (um web-chat, uma área de gerentes de vendedores, instâncias para lojas)?
-
-É super importante que tenhamos seguido todos os princípios e boas práticas de programação (como `SOLID`, por exemplo), tal como uma boa modelagem do banco de dados que torne possível gerar **escala**.
-
-Evidentemente, nada fica ideal num primeiro momento, mas quanto mais conseguirmos trabalhar no nosso projeto pensando a manutenção dele no longo prazo, mais fácil fica de programarmos coisas novas partindo do nosso código legado, por isso é importante sempre revisar nosso trabalho!
-
----
-
-# Depois de terminar o desenvolvimento
-
-Para sinalizar que o seu projeto está pronto para _"Code Review"_, faça o seguinte:
-
-- Vá até a página **DO SEU** _Pull Request_, adicione a label de _"code-review"_ e marque seus colegas:
-
-  - No menu à direita, clique no _link_ **"Labels"** e escolha a _label_ **code-review**;
-
-  - No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**;
-
-  - No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-013-c`.
-
-Caso tenha alguma dúvida, [aqui tem um video explicativo](https://vimeo.com/362189205).
-
----
-
-# Revisando um pull request
-
-Use o conteúdo sobre [Code Review](https://app.betrybe.com/course/real-life-engineer/code-review) para te ajudar a revisar os _Pull Requests_.
-
-#VQV
-
----
-
-# Avisos finais
-
-Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
-
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH)
-
-#VQV
-
----
-
-Você sabia que o LinkedIn é a principal rede social profissional e compartilhar o seu aprendizado lá é muito importante para quem deseja construir uma carreira de sucesso? Compartilhe esse projeto no seu LinkedIn, marque o perfil da Trybe (@trybe) e mostre para a sua rede toda a sua evolução.
